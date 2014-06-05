@@ -1,0 +1,178 @@
+// *************************************
+//
+//   Content
+//   -> Typography
+//
+// *************************************
+
+// -------------------------------------
+//   Vertical Rhythm
+// -------------------------------------
+
+@include establish-baseline;
+
+// -------------------------------------
+//   Headings & Paragraph & ...
+// -------------------------------------
+
+// @include selection(, );
+
+body {
+	font-family: $base-fontFamily;
+	text-rendering: optimizeLegibility;
+}
+
+p, blockquote, code, dl, ol, ul {
+	@include rhythm-to(0, 0, 0, 1, 16px);
+}
+
+#{headings()}, p {
+	@include transition(opacity .3s);
+}
+
+#{headings()} {
+	font-weight: normal;
+	font-style: normal;
+	color: #222;
+}
+
+#{headings(1,2)} {
+	overflow: hidden;
+	// font-weight: 700;
+	font-family: $base-fontFamily;
+
+	small {
+		// font-weight: 600;
+		font-family: $base-fontFamily;
+	}
+}
+
+#{headings(3,6)} {
+	overflow: hidden;
+	// font-weight: 600;
+	font-family: $base-fontFamily;
+}
+
+h1, %c-h1 {
+	@include rhythm-to(0, 0, 0, 1, 48px);
+}
+
+h2, %c-h2 {
+	@include rhythm-to(1, 0.5, 0.5, 0, 36px);
+}
+
+h3, %c-h3 {
+	@include rhythm-to(0, 0.5, 0.5, 0, 30px);
+}
+
+h4, %c-h4 {
+	@include rhythm-to(0, 0.5, 0.5, 0, 24px);
+}
+
+h5, %c-h5 {
+	@include rhythm-to(0, 0.5, 0.5, 0, 20px);
+}
+
+h6, %c-h6 {
+	@include rhythm-to(0, 0.5, 0.5, 0, 18px);
+}
+
+// ----- For 小手機 ----- //
+
+@media only screen and (max-width: $phone-min-width) {
+
+	p, blockquote, code, dl, ol, ul {
+		@include rhythm-to(0, 0, 0, 1, 15px);
+	}
+
+	h1, %c-h1 {
+		@include rhythm-to(0, 0, 0, 1, 36px);
+	}
+
+	h2, %c-h2 {
+		@include rhythm-to(1, 0.5, 0.5, 0, 30px);
+	}
+
+	h3, %c-h3 {
+		@include rhythm-to(0, 0.5, 0.5, 0, 24px);
+	}
+
+	h4, %c-h4 {
+		@include rhythm-to(0, 0.5, 0.5, 0, 20px);
+	}
+
+	h5, %c-h5 {
+		@include rhythm-to(0, 0.5, 0.5, 0, 16px);
+	}
+
+	h6, %c-h6 {
+		@include rhythm-to(0, 0.5, 0.5, 0, 16px);
+	}
+}
+
+blockquote {
+	margin-bottom: 0;
+	border-left: 5px solid $black;
+	font-family: $base-serif-fontFamily;
+
+	p {
+		font-size: 110%;
+	}
+}
+
+strong {
+	// font-weight: 600;
+	font-family: $base-fontFamily;
+}
+
+.content p.img, .content div.img {
+	padding-bottom: 18px;
+}
+
+code, .code, .content-box, %content-box {
+	overflow: auto;
+}
+
+// -------------------------------------
+//   輔助元素
+// -------------------------------------
+
+%inverse {
+	background-color: $black;
+	color: $white;
+
+	* { color: $white; }
+}
+
+.lazyload {
+	display: none;
+}
+
+.c-light, %c-light {
+	font-family: $base-fontFamily;
+	// font-weight: 300;
+}
+
+p.img {
+	text-align: center;
+}
+
+// -------------------------------------
+//   Utilities
+// -------------------------------------
+
+%c-center, .c-center {
+	text-align: center;
+}
+
+%c-condense, .c-condense {
+	font-size: 85%;
+}
+
+%c-lead, .c-lead {
+	font-size: 125%;
+}
+
+%c-shout, .c-shout {
+	text-transform: uppercase;
+}

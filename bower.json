@@ -1,0 +1,17 @@
+{
+	"name": "1LoveFest",
+	"version": "0.0.0",
+	"description": "1LoveFest 灣樂音樂藝術節 活動官網",
+	"authors": [
+		"Neson <neson@dex.tw>"
+	],
+	"private": true,
+	"dependencies": {
+		"normalize.css": "~3.0.1",
+		"modernizr": "~2.8.1",
+		"susy": "~1.0.9",
+		"foundation": "~5.2.2",
+		"jquery.lazyload": "~1.9.3",
+		"animate.css": "~3.1.1"
+	}
+}

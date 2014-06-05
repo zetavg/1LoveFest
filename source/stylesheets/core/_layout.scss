@@ -1,0 +1,94 @@
+// *************************************
+//
+//   Layout
+//   -> Margin, Padding, Sizing
+//
+// *************************************
+
+// -------------------------------------
+//   Susy Gird Config
+// -------------------------------------
+
+$total-columns: 5;
+$tablet-columns: 10;
+$desktop-columns: 12;
+$large-desktop-columns: 12;
+$column-width: 5em;
+$gutter-width: 1.8em;
+$grid-padding: 1em;
+
+$tablet: $tablet-min-width $tablet-columns;
+// => if (min-width $tablet-min-width) tablet -> use $tablet-columns
+$desktop: $desktop-min-width $desktop-columns;
+// => if (min-width $desktop-min-width) desktop -> use $desktop-columns
+
+// -------------------------------------
+//   Base
+//   -> body, body wrapper
+// -------------------------------------
+
+body {
+	cursor: auto;
+	position: relative;
+	height: auto;
+	margin: 0;
+	padding: 0;
+	min-height: 100%;
+	overflow-x: hidden;
+
+	// Warp all elements in a div
+	> div {
+		position: relative;
+		width: 100%;
+		overflow-x: hidden;
+	}
+}
+
+// -------------------------------------
+//   Composition
+//   -> header, footer, nav, main, story
+// -------------------------------------
+
+.page {
+	padding: 0;
+	margin: 0;
+}
+
+// -------------------------------------
+//   Header
+//   -> 頭
+// -------------------------------------
+
+@import "layouts/header";
+
+// -------------------------------------
+//   Footer
+//   -> 腳
+// -------------------------------------
+
+@import "layouts/footer";
+
+// -------------------------------------
+//   Nav
+//   -> 導覽
+// -------------------------------------
+
+@import "layouts/nav";
+
+// -------------------------------------
+//   Main
+//   -> 內文排版
+// -------------------------------------
+
+@import "layouts/main";
+
+// -------------------------------------
+//   Story
+//   -> 故事 section
+// -------------------------------------
+
+@import "layouts/story";
+
+// -------------------------------------
+//   Off-Canvas
+// -------------------------------------
