@@ -15,17 +15,11 @@ footer {
 		// ----- Tablet + ----- //
 		@include at-breakpoint($tablet) {
 
-			* {
-				@include span-columns($tablet-columns);
-			}
 		}
 
 		// ----- Desktop + ----- //
 		@include at-breakpoint($desktop) {
 
-			* {
-				@include span-columns($desktop-columns);
-			}
 		}
 
 		// ----- XXL Desktop + ----- //

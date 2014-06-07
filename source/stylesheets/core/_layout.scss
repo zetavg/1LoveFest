@@ -13,7 +13,7 @@ $total-columns: 5;
 $tablet-columns: 10;
 $desktop-columns: 12;
 $large-desktop-columns: 12;
-$column-width: 5em;
+$column-width: 4.6em;
 $gutter-width: 1.8em;
 $grid-padding: 1em;
 
@@ -52,6 +52,13 @@ body {
 .page {
 	padding: 0;
 	margin: 0;
+}
+
+main {
+}
+
+.inner {
+	position: relative;
 }
 
 // -------------------------------------

@@ -1,0 +1,105 @@
+%article.event.info{itemscope: "", itemtype: "http://schema.org/Event"}
+  %a{href: data.config.siteURL, itemprop: "url"}
+    %span{itemprop: "name"} 灣樂音樂藝術節 One Love DancingFest 2014 - 天際探險 Love from the Sky
+  %meta{content: "2014-07-19T14:00", itemprop: "startDate"}
+  7月19日 14:00
+  \- 6:30
+  .location{itemprop: "location", itemscope: "", itemtype: "http://schema.org/Place"}
+    %a{href: "http://www.wh-resort.com/", itemprop: "url"}
+      白宮行舘 White House Resort
+    %p{itemprop: "address", itemscope: "", itemtype: "http://schema.org/PostalAddress"}
+      %span{itemprop: "addressLocality"} 新北市
+      %span{itemprop: "addressRegion"} 萬里區
+      %span{itemprop: "streetAddress"} 瑪鋉路 264 號
+  .offers{itemprop: "offers", itemscope: "", itemtype: "http://schema.org/AggregateOffer"}
+    %meta{itemprop: "highPrice", content: "NT$1300"}
+    %meta{itemprop: "url", href: "http://www.ticket.com.tw/dm.asp?P1=0000015693"}
+  .map
+    #event_map_canvas.map.map--full-width
+    = javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
+    :javascript
+      function initialize() {
+        var latlng = new google.maps.LatLng(25.181055, 121.690248);
+
+        var styles = [
+          {
+            "featureType": "water",
+            "elementType": "geometry",
+            "stylers": [
+              { "color": "#CBE4F2" },
+              { "visibility": "on" },
+              { "weight": 0.1 }
+            ]
+          },{
+            "featureType": "road.local"  },{
+            "featureType": "landscape.natural",
+            "stylers": [
+              { "color": "#FFFAEC" }
+            ]
+          },{
+            "featureType": "road.highway",
+            "stylers": [
+              { "saturation": -40 },
+              { "hue": "#ff6600" },
+              { "lightness": 23 }
+            ]
+          },{
+            "featureType": "road.arterial",
+            "elementType": "geometry.fill",
+            "stylers": [
+              { "color": "#ffffff" }
+            ]
+          },{
+            "featureType": "road.local",
+            "elementType": "geometry.fill",
+            "stylers": [
+              { "color": "#ffffff" }
+            ]
+          },{
+            "elementType": "labels.text.fill",
+            "stylers": [
+              { "color": "#7a4527" }
+            ]
+          },{
+            "elementType": "labels.icon",
+            "stylers": [
+              { "hue": "#00b2ff" },
+              { "saturation": 70 }
+            ]
+          },{
+            "featureType": "poi.government",
+            "stylers": [
+              { "visibility": "on" },
+              { "saturation": -60 }
+            ]
+          }
+        ];
+
+        var options = {
+          zoom: 16,
+          center: latlng,
+          scrollwheel: false,
+          styles: styles
+        }
+
+        var map = new google.maps.Map(document.getElementById("event_map_canvas"), options);
+
+        var infowindow = new google.maps.InfoWindow({
+          content: ""
+        });
+
+        var marker = new google.maps.Marker({
+          position: latlng,
+          icon: '/images/event_map_mark.png',
+          shadow: '/images/event_map_mark.png',
+          map: map,
+          title: ""
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+      }
+      initialize()
+
+

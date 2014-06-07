@@ -1,7 +1,6 @@
 = wrap_layout :base_layout do
   .page
-    %header
-    %nav
-    %main
-      = yield
-    %footer
+    %header= partial 'partials/header'
+    %nav.main-menu= partial 'partials/nav'
+    %main= yield
+    %footer= partial 'partials/footer'
