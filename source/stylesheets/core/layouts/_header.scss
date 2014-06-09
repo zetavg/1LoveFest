@@ -4,32 +4,42 @@
 // -------------------------------------
 
 header {
+	@extend %skybg;
 
 	.inner {
 		@include container($total-columns, $tablet, $desktop);
 
+		.title {
+			h1 {
+				// @extend .icon;
+			}
+		}
+
 		// ----- Tablet - ----- //
 		@include respond-to($tablet, max-width) {
+
 		}
 
 		// ----- Tablet + ----- //
 		@include at-breakpoint($tablet) {
 
-			* {
-				@include span-columns($tablet-columns);
+			.action {
+				@include span-columns(2 omega, $tablet-columns);
 			}
 		}
 
 		// ----- Desktop + ----- //
 		@include at-breakpoint($desktop) {
 
-			* {
-				@include span-columns($desktop-columns);
+			.action {
+				@include span-columns(2 omega, $desktop-columns);
 			}
+
 		}
 
 		// ----- XXL Desktop + ----- //
 		@include respond-to($very-large-desktop-min-width) {
+
 		}
 	}
 }

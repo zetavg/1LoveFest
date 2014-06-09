@@ -9,6 +9,13 @@
 //   @font-face
 // -------------------------------------
 
+
+@include font-face("1LoveFest", font-files("1LoveFest-Regular.woff", "1LoveFest-Regular.ttf", "1LoveFest-Regular.svg", "1LoveFest-Regular.eot"));
+@include font-face("1LoveFest-Italic", font-files("1LoveFest-Italic.woff", "1LoveFest-Italic.ttf", "1LoveFest-Italic.svg", "1LoveFest-Italic.eot"));
+@include font-face("1LoveFest-Icon", font-files("1LoveFest-Icon.woff", "1LoveFest-Icon.ttf", "1LoveFest-Icon.svg", "1LoveFest-Icon.eot", "1LoveFest-Icon.otf"));
+
+@include font-face("Null", font-files("Null-Regular.woff", "Null-Regular.ttf", "Null-Regular.svg", "Null-Regular.eot"));
+
 @font-face {
 	font-family: 'icon-font';
 	src: url('/fonts/icon-font.eot');
@@ -26,10 +33,10 @@
 
 // ----- Base Colors ----- //
 
-$base-color: $dark-moderate-blue;
-$base-link-color: $blue;
+$base-color: $white;
+$base-link-color: $pure-pink;
 $anchor-font-color: $base-link-color;
-$base-bgc: lighten($light-grayish-blue, 4%);
+$base-bgc: $very-dark-blue;
 $base-background: $base-bgc;
 $content-bgc: $base-bgc;
 
@@ -71,9 +78,10 @@ $content-shadow: 0 0 18px rgba($black, .7);
 
 // ----- Responsive Breakpoints ----- //
 
-$phone-min-width: 341px;
-$tablet-min-width: 761px;
-$desktop-min-width: 941px;
+$small-phone-min-width: 341px;
+$phone-min-width: 421px;
+$tablet-min-width: 801px;
+$desktop-min-width: 1001px;
 $large-desktop-min-width: 1441px;
 $very-large-desktop-min-width: 1700px;
 

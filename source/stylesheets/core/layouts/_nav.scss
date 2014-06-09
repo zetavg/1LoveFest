@@ -6,31 +6,35 @@
 nav.main-menu {
 	@include user-select(none);
 
+	h1 {
+		@extend .icon;
+	}
+
+	li {
+		list-style: none;
+	}
+
 	.inner {
 		@include container($total-columns, $tablet, $desktop);
 
 		// ----- Tablet - ----- //
 		@include respond-to($tablet, max-width) {
+
 		}
 
 		// ----- Tablet + ----- //
 		@include at-breakpoint($tablet) {
 
-			* {
-				@include span-columns($tablet-columns);
-			}
 		}
 
 		// ----- Desktop + ----- //
 		@include at-breakpoint($desktop) {
 
-			* {
-				@include span-columns($desktop-columns);
-			}
 		}
 
 		// ----- XXL Desktop + ----- //
 		@include respond-to($very-large-desktop-min-width) {
+
 		}
 	}
 }

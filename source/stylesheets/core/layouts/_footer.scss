@@ -10,6 +10,7 @@ footer {
 
 		// ----- Tablet - ----- //
 		@include respond-to($tablet, max-width) {
+
 		}
 
 		// ----- Tablet + ----- //
@@ -24,6 +25,7 @@ footer {
 
 		// ----- XXL Desktop + ----- //
 		@include respond-to($very-large-desktop-min-width) {
+
 		}
 	}
 }

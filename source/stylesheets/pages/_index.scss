@@ -5,4 +5,121 @@
 //
 // *************************************
 
-.index {}
+.index {
+
+	.story.welcome {
+		position: relative;
+		height: 90vh;
+		width: 100%;
+		display: table;
+		background-color: #EBF6FA;
+		// @include background-image(
+		// 	linear-gradient(left, rgba(#fff, 0) 0%, rgba(#fff, 0) 50%, rgba(#CCF1FF, .5) 100%),
+		// 	linear-gradient(right, rgba(#fff, 0) 0%, rgba(#fff, 0) 50%, rgba(#CCF1FF, .5) 100%),
+		// 	radial-gradient(50% 0, rgba(#C48Aee, .8) 0%, rgba(#C48AFF, .3) 30%, rgba(#fff, 0) 100%)
+		// );
+		@extend %skybg;
+
+		.inner {
+			padding: 0;
+			display: table-cell;
+			vertical-align: middle;
+			text-align: center;
+			width: 100%;
+		}
+
+		.title, .title * {
+			margin: 0;
+			font-family: "1LoveFest";
+			color: $dark-moderate-blue;
+			font-size: 80px;
+			line-height: 80px;
+
+			@include respond-to($phone-min-width, max-width) {
+				font-size: 60px;
+				line-height: 48px;
+			}
+
+			@include respond-to($small-phone-min-width, max-width) {
+				font-size: 45px;
+				line-height: 32px;
+			}
+
+			h1, h1 * {
+				font-family: "1LoveFest-Italic";
+			}
+		}
+
+		.title {
+			padding: 8px 12px;
+
+			&, h1 {
+				@include text-shadow(0 0 0 rgba(#E60889, .8), 0 0 0 rgba(#2FA9DF, .8), 0 0 0 rgba(#F5EF3E, .8));
+				@include transition-property(text-shadow);
+				@include transition-duration(.6s);
+				@include transition-timing-function(cubic-bezier(0.175,  0.885, 0.320, 1.946));
+			}
+
+			h1 {
+
+				.en, .zh {
+					display: block;
+					font-size: 100px;
+					line-height: 86px;
+
+					@include respond-to($phone-min-width, max-width) {
+						font-size: 80px;
+						line-height: 70px;
+					}
+
+					@include respond-to($small-phone-min-width, max-width) {
+						font-size: 65px;
+						line-height: 55px;
+					}
+				}
+			}
+
+			h2 {
+				font-size: 32px;
+				line-height: 32px;
+				letter-spacing: 24px;
+				padding-left: 24px;
+
+				@include respond-to($phone-min-width, max-width) {
+					font-size: 28px;
+					line-height: 28px;
+					letter-spacing: 16px;
+					padding-left: 16px;
+				}
+
+				@include respond-to($small-phone-min-width, max-width) {
+					font-size: 24px;
+					line-height: 24px;
+					letter-spacing: 8px;
+					padding-left: 8px;
+				}
+			}
+
+			.features {
+				font-size: 28px;
+				line-height: 70px;
+				letter-spacing: 18px;
+				word-spacing: -18px;
+				padding-left: 9px;
+
+				@include respond-to($tablet-min-width, max-width) { display: none; }
+			}
+
+			&:hover {
+				@include text-shadow(-2px 0 0 rgba(#E60889, .8), 1.2px 0 0 rgba(#2FA9DF, .8), 2.4px 0 0 rgba(#F5EF3E, .8));
+
+				h1 {
+					@include text-shadow(-3px 0 0 rgba(#E60889, .8), 2px 0 0 rgba(#2FA9DF, .8), 4px 0 0 rgba(#F5EF3E, .8));
+				}
+			}
+		}
+	}
+
+	section.story.event p {
+	}
+}

@@ -1,0 +1,23 @@
+// *************************************
+//
+//   Test
+//   -> 測試頁
+//
+// *************************************
+
+.test {
+	main {
+		// display: none;
+
+		:nth-child(1) {
+			@include parallax(-1);
+			top: 0;
+			left: 0;
+		}
+		:nth-child(2) {
+			@include parallax(.2);
+			top: 0;
+			left: 0;
+		}
+	}
+}

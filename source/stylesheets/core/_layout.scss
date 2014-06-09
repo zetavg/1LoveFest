@@ -27,6 +27,8 @@ $desktop: $desktop-min-width $desktop-columns;
 //   -> body, body wrapper
 // -------------------------------------
 
+// @include parallax-init;
+
 body {
 	cursor: auto;
 	position: relative;
@@ -40,7 +42,6 @@ body {
 	> div {
 		position: relative;
 		width: 100%;
-		overflow-x: hidden;
 	}
 }
 
@@ -48,6 +49,8 @@ body {
 //   Composition
 //   -> header, footer, nav, main, story
 // -------------------------------------
+
+// @include parallax-init;
 
 .page {
 	padding: 0;

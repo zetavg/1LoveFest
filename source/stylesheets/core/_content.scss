@@ -157,6 +157,14 @@ p.img {
 	text-align: center;
 }
 
+.icon {
+	font-family: "Null";
+
+	&::first-letter {
+		font-family: "1LoveFest-Icon";
+	}
+}
+
 // -------------------------------------
 //   Utilities
 // -------------------------------------
