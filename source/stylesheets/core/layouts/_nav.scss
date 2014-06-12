@@ -37,18 +37,15 @@ nav.main-menu {
 		border-bottom: 1px solid rgba($white, .24);
 	// }
 
-	.inner {
-		padding: $nav-padding;
-		@include container($total-columns, $tablet, $desktop);
+	// ----- Phone ----- //
+	@include respond-to($tablet-min-width, max-width) {
+		@include transition-property(margin-bottom);
+		@include transition-duration(.4s);
 
-		// ----- Tablet - ----- //
-		@include respond-to($tablet-min-width, max-width) {
-			h1 {
-				width: $nav-height*2;
-			}
+		h1 {
+			width: $nav-height*2;
 
-			h1::after {
-				@extend .icon;
+			&::after {
 				content: "\f0c9";
 				font-family: "1LoveFest-Icon", "FontAwesome";
 				display: block;
@@ -62,12 +59,48 @@ nav.main-menu {
 				height: $nav-height - 16;
 				@include border-radius(100px);
 				border: 1px solid $white;
+				@include transition-property(font-size, color, background-color);
+				@include transition-duration(.3s);
 			}
 
-			ul {
-				clear: both;
+			&:hover {
+				&::after {
+					font-size: 24px;
+				}
 			}
 		}
+
+		ul {
+			clear: both;
+			margin: 0;
+			padding: 0;
+			overflow: hidden;
+			height: 0;
+			@include transition-property(height);
+			@include transition-duration(.4s);
+
+			li {
+				height: 50px;
+
+				&:first-child {
+					margin-top: 14px;
+				}
+			}
+		}
+
+		&.open {
+			h1 {
+				&::after {
+					color: $black;
+					background-color: $white;
+				}
+			}
+		}
+	}
+
+	.inner {
+		padding: $nav-padding;
+		@include container($total-columns, $tablet, $desktop);
 
 		// ----- Tablet + ----- //
 		@include at-breakpoint($tablet) {
@@ -164,6 +197,8 @@ nav.main-menu {
 	@include position-sticky;
 	z-index: 50;
 	display: none;
+	@include transition-property(height);
+	@include transition-duration(.4s);
 }
 
 @include respond-to($tablet-min-width) {

@@ -27,7 +27,9 @@ refreshViev = () ->
   # 動態 css
   jsCssNode = document.getElementById('js-css')
   jsCssNode.parentNode.removeChild(jsCssNode) if jsCssNode?.parentNode
-  css = ""
+  css = '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open ul { height: ' + ($('.main-menu ul li').length*50 + 18) + 'px; } }'
+  css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open { margin-bottom: -' + ($('.main-menu ul li').length*50 + 18) + 'px; } }'
+  css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open ~ * .a:nth-child(1) { height: ' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; margin-top: -' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; } }'
   head = document.head or document.getElementsByTagName("head")[0]
   style = document.createElement("style")
   style.type = "text/css"
@@ -69,7 +71,7 @@ refreshViev = () ->
     if !isIOS and !Modernizr.csssticky
       scrollTop = $(this).scrollTop()
       # Nav
-      if (mainMenuOffsetTop - scrollTop) < 0 and $(window).width() > tabletMinWidth
+      if (mainMenuOffsetTop - scrollTop) < 0
         mainMenu.css 'position', 'fixed'
         # afterMainMenu.css 'padding-top', (afterMainMenuOrgPaddingTop+mainMenu.height) + 'px'
         afterMainMenu.css 'margin-top', mainMenu.height() + 'px'
@@ -78,32 +80,33 @@ refreshViev = () ->
         # afterMainMenu.css 'padding-top', (afterMainMenuOrgPaddingTop) + 'px'
         afterMainMenu.css 'margin-top', '0'
       # After Nav - BG
-      if $(window).width() > tabletMinWidth
-        $('.main-menu ~ *').each ->
-          if ($(this).offset().top + $(this).height() - mainMenu.height() - scrollTop) < 0
-            $(this).children('.a:nth-child(1)').css
-              'display': 'block'
-              'position': 'absolute'
-              'margin-top': '0'
-              'top': 'auto'
-              'bottom': '0'
-          else if ($(this).offset().top - scrollTop) < mainMenu.height()*2
-            $(this).children('.a:nth-child(1)').css
-              'display': 'block'
-              'position': 'fixed'
-              'top': '0'
-              'bottom': 'auto'
-              'margin-top': '0'
-          else
-            $(this).children('.a:nth-child(1)').css
-              'display': 'none'
-      else
-        $('.main-menu ~ *').children('.a:nth-child(1)').css 'display', 'none'
+      # if $(window).width() > tabletMinWidth
+      $('.main-menu ~ *').each ->
+        if ($(this).offset().top + $(this).height() - mainMenu.height() - scrollTop) < 0
+          $(this).children('.a:nth-child(1)').css
+            'display': 'block'
+            'position': 'absolute'
+            'margin-top': '0'
+            'top': 'auto'
+            'bottom': '0'
+        else if ($(this).offset().top - scrollTop) < mainMenu.height()*2
+          $(this).children('.a:nth-child(1)').css
+            'display': 'block'
+            'position': 'fixed'
+            'top': '0'
+            'bottom': 'auto'
+            'margin-top': '0'
+        else
+          $(this).children('.a:nth-child(1)').css
+            'display': 'none'
+      # else
+      #   $('.main-menu ~ *').children('.a:nth-child(1)').css 'display', 'none'
 
 refreshViev()
 
 # 按鈕動作
-# ...
+$('.main-menu h1').click ->
+  $('.main-menu').toggleClass 'open'
 
 # 針對不同瀏覽器及系統的處理
 if window.chrome
@@ -147,6 +150,7 @@ $(window).load ->
   setTimeout refreshViev(), 5000
 
 $(window).resize ->
+  $('.main-menu').removeClass 'open'
   waitForFinalEvent (->
     refreshViev()
   ), 10, "winRz"
