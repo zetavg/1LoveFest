@@ -2,6 +2,7 @@
 //= require fastclick/lib/fastclick.js
 //= require foundation/js/foundation.js
 //= require smoothScrolling.js
+//= require rgbcolor.js
 //= require jquery.lazyload/jquery.lazyload
 //= include app.js
 

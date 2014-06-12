@@ -7,10 +7,62 @@
 
 .index {
 
+	// -------------------------------------
+	//   Layout
+	// -------------------------------------
+
+	header {
+		position: absolute;
+		background-image: none;
+		width: 100%;
+
+		.title {
+			display: none;
+		}
+
+		.action {
+			position: relative;
+			z-index: 100;
+		}
+	}
+
+	// .story.welcome {
+	// 	height: 500px;
+	// }
+
+	// @include respond-to($phone-min-width) {
+
+	// 	.story.welcome {
+	// 		height: 600px;
+	// 	}
+
+	// 	.main-menu {
+	// 		top: 600px;
+	// 	}
+	// }
+
+	@include respond-to($tablet-min-width) {
+
+		.story.welcome {
+			height: 90vh;
+		}
+
+		// .main-menu {
+		// 	position: absolute;
+		// 	@include position-sticky;
+		// 	width: 100%;
+		// 	top: 90vh;
+		// }
+	}
+
+	// -------------------------------------
+	//   Welcome
+	// -------------------------------------
+
 	.story.welcome {
 		position: relative;
-		height: 90vh;
 		width: 100%;
+		// margin-bottom: 100px;
 		display: table;
 		background-color: #EBF6FA;
 		// @include background-image(
@@ -26,6 +78,10 @@
 			vertical-align: middle;
 			text-align: center;
 			width: 100%;
+
+			@include respond-to($tablet-min-width, max-width) {
+				padding: 60px 0 60px;
+			}
 		}
 
 		.title, .title * {
@@ -121,5 +177,23 @@
 	}
 
 	section.story.event p {
+	}
+}
+
+// -------------------------------------
+//   Fallbacks
+// -------------------------------------
+
+.touch.index, .ios.index {
+
+	@include respond-to($tablet-min-width) {
+
+		.story.welcome {
+			height: 600px;
+		}
+
+		// .main-menu {
+		// 	top: 600px;
+		// }
 	}
 }

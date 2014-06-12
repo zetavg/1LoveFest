@@ -3,28 +3,148 @@
 //   -> 導覽
 // -------------------------------------
 
+$nav-height: 72px;
+$nav-padding: 8px;
+
 nav.main-menu {
 	@include user-select(none);
+	position: relative;
+	z-index: 100;
 
 	h1 {
 		@extend .icon;
+		display: inline-block;
+		color: $white;
+		font-size: $nav-height + 18;
+		line-height: $nav-height;
+		margin: 0;
+		float: left;
+		position: relative;
+		top: -2px;
+		margin-right: 20px;
 	}
 
 	li {
 		list-style: none;
 	}
 
+
+	// @include respond-to($tablet-min-width) {
+		@include position-sticky;
+		width: 100%;
+		background-color: rgba($black, .32);
+		border-top: 1px solid rgba($white, .24);
+		border-bottom: 1px solid rgba($white, .24);
+	// }
+
 	.inner {
+		padding: $nav-padding;
 		@include container($total-columns, $tablet, $desktop);
 
 		// ----- Tablet - ----- //
-		@include respond-to($tablet, max-width) {
+		@include respond-to($tablet-min-width, max-width) {
+			h1 {
+				width: $nav-height*2;
+			}
 
+			h1::after {
+				@extend .icon;
+				content: "\f0c9";
+				font-family: "1LoveFest-Icon", "FontAwesome";
+				display: block;
+				position: absolute;
+				top: 10px;
+				left: $nav-height;
+				font-size: 30px;
+				line-height: $nav-height - 20;
+				text-align: center;
+				width: $nav-height - 16;
+				height: $nav-height - 16;
+				@include border-radius(100px);
+				border: 1px solid $white;
+			}
+
+			ul {
+				clear: both;
+			}
 		}
 
 		// ----- Tablet + ----- //
 		@include at-breakpoint($tablet) {
 
+			ul {
+				margin: 0;
+			}
+
+			li {
+				display: inline-block;
+
+				a {
+					position: relative;
+					line-height: $nav-height;
+					padding: 10px 12px;
+					color: $white;
+					font-size: rem(20px);
+					@include transition-property(color);
+					@include transition-duration(.3s);
+					@include transition-timing-function(steps(2, end));
+
+					.non-touch & {
+						small {
+							position: absolute;
+							display: block;
+							// width: 100%;
+							line-height: initial;
+							text-align: center;
+							bottom: -5px;
+							left: 0;
+							padding: 2px 4px;
+							color: $black;
+							font-size: rem(14px);
+							background-color: $base-link-color;
+							white-space: nowrap;
+							@include transform(scale(.64) translateX(10px) translateY(-20px));
+							opacity: 0;
+							@include transition-property(transform, opacity);
+							@include transition-duration(.3s);
+							@include transition-delay(.01s);
+							@include transition-timing-function(steps(2, end));
+						}
+
+						&:hover {
+							color: $base-link-color;
+							text-decoration: none;
+							@include transition-duration(.18s);
+							@include transition-timing-function(ease);
+
+							small {
+								@include transform(scale(1) translateX(0) translateY(0));
+								@include transition-duration(0, .18s);
+								@include transition-delay(0);
+								@include transition-timing-function(ease);
+								opacity: 1;
+							}
+						}
+					}
+
+					.touch & {
+						small {
+							position: absolute;
+							display: block;
+							// width: 100%;
+							line-height: initial;
+							text-align: center;
+							bottom: -1px;
+							left: 0;
+							padding: 0 12px;
+							color: $white;
+							font-size: rem(10px);
+							line-height: 10px;
+							white-space: nowrap;
+						}
+					}
+				}
+			}
 		}
 
 		// ----- Desktop + ----- //
@@ -37,4 +157,40 @@ nav.main-menu {
 
 		}
 	}
+}
+
+.main-menu ~ * > .a {
+	position: absolute;
+	@include position-sticky;
+	z-index: 50;
+	display: none;
+}
+
+@include respond-to($tablet-min-width) {
+	// .main-menu ~ section {
+	// 	overflow: hidden;
+
+	// 	&::before {
+	// 		content: " ";
+	// 		position: relative;
+	// 		@include position-sticky;
+	// 		top: 0;
+	// 		left: 0;
+	// 		// z-index: -1;
+	// 		display: block;
+	// 		width: 100%;
+	// 		height: $nav-height + $nav-padding*2;
+	// 		background-color: #f00;
+	// 	}
+
+	// 	// @for $i from 1 through 50 {
+	// 	// 	&:nth-child(#{$i})::before {
+	// 	// 		z-index: -100 - $i;
+	// 	// 	}
+	// 	// }
+
+	// 	&.inverse::before {
+	// 		background-color: #0f0;
+	// 	}
+	// }
 }

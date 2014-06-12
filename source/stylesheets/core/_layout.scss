@@ -55,9 +55,17 @@ body {
 .page {
 	padding: 0;
 	margin: 0;
+
+	@for $i from 1 through 49 {
+		> *:nth-child(#{$i}) {
+			z-index: 100 - $i;
+		}
+	}
 }
 
-main {
+section, main, header, footer {
+	position: relative;
+	background-color: $base-bgc;
 }
 
 .inner {
