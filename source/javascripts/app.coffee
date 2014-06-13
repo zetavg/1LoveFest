@@ -19,7 +19,6 @@ this.waitForFinalEvent = (->
 )()
 
 refreshViev = () ->
-  console.log 'ww'
   # CSS3 Fallbacks (Modernizr feature-detects include 在 modernizr.js)
   if not Modernizr.cssvwunit
     $('body').addClass 'no-vw'
@@ -27,9 +26,9 @@ refreshViev = () ->
   # 動態 css
   jsCssNode = document.getElementById('js-css')
   jsCssNode.parentNode.removeChild(jsCssNode) if jsCssNode?.parentNode
-  css = '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open ul { height: ' + ($('.main-menu ul li').length*50 + 18) + 'px; } }'
-  css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open { margin-bottom: -' + ($('.main-menu ul li').length*50 + 18) + 'px; } }'
-  css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open ~ * .a:nth-child(1) { height: ' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; margin-top: -' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; } }'
+  css = '@media screen and (max-width: ' + tabletMinWidth + 'px) { .nav-open nav.main-menu ul { height: ' + ($(window).height() - $('.main-menu').height()) + 'px; } }'
+  # css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open { margin-bottom: -' + ($('.main-menu ul li').length*50 + 18) + 'px; } }'
+  # css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open ~ * .a:nth-child(1) { height: ' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; margin-top: -' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; } }'
   head = document.head or document.getElementsByTagName("head")[0]
   style = document.createElement("style")
   style.type = "text/css"
@@ -82,7 +81,7 @@ refreshViev = () ->
       # After Nav - BG
       # if $(window).width() > tabletMinWidth
       $('.main-menu ~ *').each ->
-        if ($(this).offset().top + $(this).height() - mainMenu.height() - scrollTop) < 0
+        if ($(this).offset().top + $(this).height() - mainMenu.height() - scrollTop) < 12
           $(this).children('.a:nth-child(1)').css
             'display': 'block'
             'position': 'absolute'
@@ -106,7 +105,12 @@ refreshViev()
 
 # 按鈕動作
 $('.main-menu h1').click ->
-  $('.main-menu').toggleClass 'open'
+  if $(window).width() >= tabletMinWidth
+    $("html,body").animate
+      scrollTop: 0
+    , 1000
+  else
+    $('.page').toggleClass 'nav-open'
 
 # 針對不同瀏覽器及系統的處理
 if window.chrome

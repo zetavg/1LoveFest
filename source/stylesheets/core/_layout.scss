@@ -66,7 +66,23 @@ body {
 section, main, header, footer {
 	position: relative;
 	background-color: $base-bgc;
+	// transition-property: filter;
+	// -webkit-transition-property: -webkit-filter;
+	// -webkit-transition-property: filter;
+	// -moz-transition-property: -moz-filter;
+	// -moz-transition-property: filter;
+	// -o-transition-property: -o-filter;
+	// -o-transition-property: filter;
+	// @include transition-duration(.4s);
+	// @include filter(blur(0));
 }
+
+.nav-open {
+	section, main, header, footer {
+		@include filter(blur(5px));
+	}
+}
+
 
 .inner {
 	position: relative;

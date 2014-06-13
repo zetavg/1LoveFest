@@ -9,6 +9,7 @@ $nav-padding: 8px;
 nav.main-menu {
 	@include user-select(none);
 	position: relative;
+	overflow: visible;
 	z-index: 100;
 
 	h1 {
@@ -22,6 +23,15 @@ nav.main-menu {
 		position: relative;
 		top: -2px;
 		margin-right: 20px;
+		cursor: pointer;
+
+		@include respond-to($tablet-min-width) {
+			.non-touch &:hover {
+				-webkit-animation: FlashingColors 1s step-end infinite;
+				-o-animation: FlashingColors 1s step-end infinite;
+				animation: FlashingColors 1s step-end infinite;
+			}
+		}
 	}
 
 	li {
@@ -38,12 +48,31 @@ nav.main-menu {
 	// }
 
 	// ----- Phone ----- //
-	@include respond-to($tablet-min-width, max-width) {
+	@include respond-to($tablet-min-width - 1, max-width) {
 		@include transition-property(margin-bottom);
 		@include transition-duration(.4s);
+		z-index: 1000;
+
+		.inner {
+			height: $nav-height + $nav-padding*2;
+			position: static;
+		}
 
 		h1 {
 			width: $nav-height*2;
+			width: 100%;
+
+			&::before {
+				content: "2014 灣樂音樂藝術節";
+				position: absolute;
+				right: 0;
+				font-family: "1LoveFest";
+				font-size: 30px;
+				line-height: $nav-height - 2;
+				color: $white;
+				text-align: right;
+				width: 100%;
+			}
 
 			&::after {
 				content: "\f0c9";
@@ -54,6 +83,7 @@ nav.main-menu {
 				left: $nav-height;
 				font-size: 30px;
 				line-height: $nav-height - 20;
+				color: $white;
 				text-align: center;
 				width: $nav-height - 16;
 				height: $nav-height - 16;
@@ -63,7 +93,7 @@ nav.main-menu {
 				@include transition-duration(.3s);
 			}
 
-			&:hover {
+			&:active {
 				&::after {
 					font-size: 24px;
 				}
@@ -72,28 +102,95 @@ nav.main-menu {
 
 		ul {
 			clear: both;
+			position: absolute;
+			z-index: 1000;
+			// @include span-columns(3, $total-columns);
+			top: $nav-height + $nav-padding*2;
+			left: 0;
+			width: 100%;
 			margin: 0;
-			padding: 0;
-			overflow: hidden;
+			background-color: rgba($black, .32);
 			height: 0;
+			overflow: hidden;
 			@include transition-property(height);
 			@include transition-duration(.4s);
+			@include transition-delay(0);
 
 			li {
-				height: 50px;
+				@include container($total-columns, $tablet, $desktop);
+				// max-width: ($column-width*$total-columns + $gutter-width*($total-columns - 1))*1.23;
+				// width: ($column-width*$total-columns + $gutter-width*($total-columns - 1))*1.23;
+				padding: 0 $grid-padding*2.2;
+				line-height: 50px;
+				font-size: 22px;
+				color: rgba($base-link-color, 0);
+				@include text-shadow(-20px 0 0 rgba(#e60889, 0), 10px 0 0 rgba(#2fa9df, 0), 20px 0 0 rgba(#f5ef3e, 0));
+				// opacity: 0;
+				@include transition-property(opacity, text-shadow, color);
+				@include transition-duration(.4s);
+				@include transition-delay(.08s);
 
 				&:first-child {
-					margin-top: 14px;
+					margin-top: 12px;
+				}
+
+				a {
+					color: inherit;
 				}
 			}
+
 		}
 
-		&.open {
+		.nav-open & {
+			background-color: rgba($black, .52);
+
 			h1 {
+
 				&::after {
 					color: $black;
 					background-color: $white;
 				}
+			}
+
+			ul {
+				height: 600px;
+				border-bottom: 1px solid rgba($white, .24);
+				background-color: rgba($black, .52);
+				@include transition-delay(0);
+
+				li {
+					@include text-shadow(0 0 0 rgba(#e60889, .6), 0 0 0 rgba(#2fa9df, .8), 0 0 0 rgba(#f5ef3e, .8));
+					color: rgba($base-link-color, 1);
+					// opacity: 1;
+
+					@include transition-duration(.4s);
+
+					@for $i from 1 through 100 {
+						&:nth-child(#{$i}) {
+							@include transition-delay(($i*$i+$i)/100 + .02 + s);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	@include respond-to($phone-min-width - 1, max-width) {
+
+		h1 {
+
+			&::before {
+				font-size: 18px;
+			}
+		}
+	}
+
+	@include respond-to($small-phone-min-width - 1, max-width) {
+
+		h1 {
+
+			&::before {
+				content: "";
 			}
 		}
 	}
