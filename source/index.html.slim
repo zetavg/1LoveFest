@@ -2,7 +2,28 @@
 layout: base_layout
 ---
 .page
+  header= partial 'partials/header'
   section.story.welcome
+    ul#scene
+      / li.layer(data-depth="0.10")
+      /   .bg(style="background-image: url(/images/index/scene/l1.png)")
+      / li.layer(data-depth="0.18")
+      /   .bg(style="background-image: url(/images/index/scene/l2.png);")
+      / li.layer(data-depth="0.22")
+      /   .bg(style="background-image: url(/images/index/scene/l3.png);")
+      / li.layer(data-depth="0.40")
+      /   .bg(style="background-image: url(/images/index/scene/l4.1.png); background-position: 0% 100%;")
+      / li.layer(data-depth="0.45")
+      /   .bg(style="background-image: url(/images/index/scene/l4.2.png); background-position: 0% 100%;")
+      / li.layer(data-depth="0.40")
+      /   .bg(style="background-image: url(/images/index/scene/l4.3.png); background-position: 0% 100%;")
+      / li.layer(data-depth="0.50")
+      /   .bg(style="background-image: url(/images/index/scene/l5.png); background-position: 0% 100%;")
+      / li.layer(data-depth="0.60")
+      /   .bg(style="background-image: url(/images/index/scene/l6.png);")
+      / li.layer(data-depth="0.64")
+      /   .bg(style="background-image: url(/images/index/scene/l7.png); background-position: 0% 100%;")
+
     .inner
       .title
         hgroup
@@ -14,6 +35,14 @@ layout: base_layout
         .features 海洋 | 沙灘 | 日夜 | 遺跡 | 探險 | 音樂 | 藝術
   nav.main-menu= partial 'partials/nav'
 
+  section.story.intro
+    .inner
+      iframe.embed-video(src="//www.youtube.com/embed/WAHXPEnEUZA?rel=0" frameborder="0" allowfullscreen="")
+  section.horizontal-rule
+    .inner
+      .entry(data-scroll-reveal="enter left and move 50px over 1.33s") Foo
+      .entry(data-scroll-reveal="enter from the bottom after 1s") Bar
+      .entry(data-scroll-reveal="wait 2.5s and then ease-in-out 100px") Baz
   section.story.event
     .inner
       p 

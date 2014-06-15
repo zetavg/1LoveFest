@@ -44,6 +44,7 @@ refreshViev = () ->
   mainMenuOffsetTop = mainMenu.offset().top
   afterMainMenu = $('.main-menu + *')
   afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
+  $('.wrapper').css 'background-color', $('.main-menu + *').css('background-color')
   # Nav BG Effect
   $('.main-menu ~ *').each ->
     bgcolor = new RGBColor($(this).css('background-color'))

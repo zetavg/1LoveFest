@@ -130,6 +130,13 @@
 	top: 0;
 }
 
+// ----- susy: span-center ------ //
+
+@mixin span-center($columns, $total-columns) {
+	@include span-columns($columns, $total-columns);
+	@include pre(($total-columns - $columns)/2, $total-columns);
+}
+
 // ----- Magic parallax mixins ----- //
 
 $parallax-perspective : 1 !default;
