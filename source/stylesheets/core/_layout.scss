@@ -126,3 +126,18 @@ section, main, header, footer {
 // -------------------------------------
 //   Off-Canvas
 // -------------------------------------
+
+// -------------------------------------
+//   Inner Width
+//   -> Stick to grid
+// -------------------------------------
+
+@for $i from 10 through 160 {
+
+	@include respond-to($i*10 + px) {
+		.inner, * .inner, * * .inner {
+			max-width: none !important;
+			width: ($i - round($i/10) - 1)*10 + 1px;
+		}
+	}
+}

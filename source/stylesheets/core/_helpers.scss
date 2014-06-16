@@ -60,6 +60,12 @@
 	@include background-size(100% 100%);
 }
 
+%white_grid_background {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAQAAAAnZu5uAAAAHUlEQVR4AWMAgf+8/xn+AykghDF5gTAIRCKLIpgAY6EXpI/nQTYAAAAASUVORK5CYII=);
+	background-repeat: repeat;
+	background-position: 50% 50%;
+}
+
 // -------------------------------------
 //   Functions
 // -------------------------------------

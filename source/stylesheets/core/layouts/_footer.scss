@@ -4,8 +4,44 @@
 // -------------------------------------
 
 footer {
+	@extend %white_grid_background;
+
+	.map-wrapper {
+		overflow: hidden;
+
+		.map-container {
+			overflow: visible;
+		}
+
+		.inner {
+			position: relative;
+
+			&::before, &::after {
+				content: " ";
+				display: block;
+				position: absolute;
+				z-index: 10;
+				background-color: rgba($black, .32);
+				height: 100%;
+				width: $infinite;
+				top: 0;
+			}
+
+			&::before {
+				left: - $infinite;
+			}
+
+			&::after {
+				right: - $infinite;
+			}
+
+		}
+
+	}
 
 	.inner {
+		background-color: rgba($white, .08);
+
 		@include container($total-columns, $tablet, $desktop);
 
 		// ----- Tablet - ----- //

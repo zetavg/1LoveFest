@@ -1,3 +1,97 @@
-.inner
-  #foot-action.event-info
-    = partial "partials/event"
+.event-info
+  .inner
+    #foot-action.event-info
+      = partial "partials/event"
+.map-wrapper
+  .map-container
+    .inner
+      #event_map_canvas.map.map--full-width.map--overflow
+      = javascript_include_tag "http://maps.google.com/maps/api/js?sensor=false"
+      :javascript
+        function initialize() {
+          var latlng = new google.maps.LatLng(25.181055, 121.690248);
+
+          var styles = [
+            {
+              "featureType": "water",
+              "elementType": "geometry",
+              "stylers": [
+                { "color": "#CBE4F2" },
+                { "visibility": "on" },
+                { "weight": 0.1 }
+              ]
+            },{
+              "featureType": "road.local"  },{
+              "featureType": "landscape.natural",
+              "stylers": [
+                { "color": "#FFFAEC" }
+              ]
+            },{
+              "featureType": "road.highway",
+              "stylers": [
+                { "saturation": -40 },
+                { "hue": "#ff6600" },
+                { "lightness": 23 }
+              ]
+            },{
+              "featureType": "road.arterial",
+              "elementType": "geometry.fill",
+              "stylers": [
+                { "color": "#ffffff" }
+              ]
+            },{
+              "featureType": "road.local",
+              "elementType": "geometry.fill",
+              "stylers": [
+                { "color": "#ffffff" }
+              ]
+            },{
+              "elementType": "labels.text.fill",
+              "stylers": [
+                { "color": "#7a4527" }
+              ]
+            },{
+              "elementType": "labels.icon",
+              "stylers": [
+                { "hue": "#00b2ff" },
+                { "saturation": 70 }
+              ]
+            },{
+              "featureType": "poi.government",
+              "stylers": [
+                { "visibility": "on" },
+                { "saturation": -60 }
+              ]
+            }
+          ];
+
+          var options = {
+            zoom: 16,
+            center: latlng,
+            scrollwheel: false,
+            styles: styles
+          }
+
+          var map = new google.maps.Map(document.getElementById("event_map_canvas"), options);
+
+          var infowindow = new google.maps.InfoWindow({
+            content: ""
+          });
+
+          var marker = new google.maps.Marker({
+            position: latlng,
+            icon: '/images/event_map_mark.png',
+            shadow: '/images/event_map_mark.png',
+            map: map,
+            title: ""
+          });
+
+          google.maps.event.addListener(marker, 'click', function() {
+            infowindow.open(map,marker);
+          });
+        }
+        initialize()
+
+.about
+  .inner
+    版權所有 ©

@@ -42,9 +42,9 @@ nav.main-menu {
 	// @include respond-to($tablet-min-width) {
 		@include position-sticky;
 		width: 100%;
-		background-color: rgba($black, .32);
-		border-top: 1px solid rgba($white, .24);
-		border-bottom: 1px solid rgba($white, .24);
+		// background-color: rgba($black, .32);
+		// border-top: 1px solid rgba($white, .24);
+		// border-bottom: 1px solid rgba($white, .24);
 	// }
 
 	// ----- Phone ----- //

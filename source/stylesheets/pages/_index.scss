@@ -213,6 +213,31 @@
 		background-color: $black;
 		padding: 20px 0;
 	}
+
+	// -------------------------------------
+	//   Artists
+	// -------------------------------------
+
+	.story.artists {
+		// background-color: $black;
+		padding: 0;
+		@extend %white_grid_background;
+
+		.inner {
+			padding-top: 40px;
+			padding-bottom: 40px;
+			background-color: rgba($white, .2);
+		}
+	}
+
+	// -------------------------------------
+	//   Installations
+	// -------------------------------------
+
+	.story.installations {
+		background-color: $black;
+		padding: 20px 0;
+	}
 }
 
 // -------------------------------------
