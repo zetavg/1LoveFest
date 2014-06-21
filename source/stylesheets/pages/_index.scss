@@ -211,7 +211,17 @@
 
 	.story.intro {
 		background-color: $black;
-		padding: 20px 0;
+		padding: 0;
+
+		.inner {
+			width: 100%;
+			padding: 0;
+		}
+
+		.embed-video {
+			width: 100%;
+			margin: 0;
+		}
 	}
 
 	// -------------------------------------

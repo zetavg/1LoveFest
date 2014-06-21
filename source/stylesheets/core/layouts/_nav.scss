@@ -43,8 +43,8 @@ nav.main-menu {
 		@include position-sticky;
 		width: 100%;
 		// background-color: rgba($black, .32);
-		// border-top: 1px solid rgba($white, .24);
-		// border-bottom: 1px solid rgba($white, .24);
+		border-top: 1px solid rgba($white, .24);
+		border-bottom: 1px solid rgba($white, .24);
 	// }
 
 	// ----- Phone ----- //

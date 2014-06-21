@@ -5,31 +5,38 @@
 //
 // *************************************
 
-.button, .button:hover {
-	display: inline-block;
-	padding: 4px 6px;
-	text-align: center;
-	text-decoration: none;
-	cursor: pointer;
-	max-width: 100%;
-	overflow: hidden;
-	@include ellipsis;
-	background-color: $base-button-color;
-	border: 1px solid darken($base-button-color, 10%);
+@mixin button($color) {
 
-	@if lightness($base-button-color) < 50% {
-		color: $white;
-	} @else {
-		color: $black;
+	&, &:hover {
+		display: inline-block;
+		padding: 4px 6px;
+		text-align: center;
+		text-decoration: none;
+		cursor: pointer;
+		max-width: 100%;
+		overflow: hidden;
+		@include ellipsis;
+		background-color: $color;
+		border: 1px solid darken($color, 10%);
+
+		@if lightness($color) < 50% {
+			color: $white;
+		} @else {
+			color: $black;
+		}
+
+		* {
+			@include ellipsis;
+		}
 	}
 
-	* {
-		@include ellipsis;
+	&:hover {
+		background-color: lighten($color, 10%);
 	}
 }
 
-.button:hover {
-	background-color: lighten($base-button-color, 10%);
+.button {
+	@include button($base-button-color);
 }
 
 
