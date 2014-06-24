@@ -1,6 +1,8 @@
 console.log 'Hello and welcome to One Love DancingFest 👋'
 
-# ----- Responsive Breakpoints ----- #
+# Variables
+
+## Responsive Breakpoints
 
 smallPhoneMinWidth = 341
 phoneMinWidth = 421
@@ -8,6 +10,15 @@ tabletMinWidth = 801
 desktopMinWidth = 1001
 largeDesktopMinWidth = 1441
 veryLargeDesktopMinWidth = 1700
+
+## Layout Vars
+
+mainMenu = $('.main-menu')
+mainMenuOffsetTop = mainMenu.offset().top
+afterMainMenu = $('.main-menu + *')
+afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
+
+# Helpers
 
 this.waitForFinalEvent = (->
   timers = {}
@@ -17,6 +28,29 @@ this.waitForFinalEvent = (->
     timers[uniqueId] = setTimeout(callback, ms)
     return
 )()
+
+# Cross-Browser
+
+# 針對不同瀏覽器及系統的處理
+if window.chrome
+  isChrome = true
+  $('body').addClass 'chrome'
+if Modernizr.touch
+  isTouch = true
+  $('body').addClass 'touch'
+else
+  $('body').addClass 'non-touch'
+if navigator.platform.toUpperCase().indexOf('MAC')>=0
+  isMac = true
+  $('body').addClass 'mac'
+if navigator.platform.match(/(iPhone|iPod|iPad)/i)
+  isIOS = true
+  $('body').addClass 'ios'
+if navigator.appVersion.match(/(Win)/i)
+  isWin = true
+  $('body').addClass 'windows'
+
+# Layout Functions
 
 refreshViev = () ->
   # CSS3 Fallbacks (Modernizr feature-detects include 在 modernizr.js)
@@ -41,96 +75,56 @@ refreshViev = () ->
 
   # Nav
   mainMenu = $('.main-menu')
+  mainMenu.css 'position', 'relative'
   mainMenuOffsetTop = mainMenu.offset().top
+  console.log "$('.main-menu').offset().top = " + mainMenuOffsetTop
   afterMainMenu = $('.main-menu + *')
   afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
   $('.wrapper').css 'background-color', $('.main-menu + *').css('background-color')
-  # Nav BG Effect
-  $('.main-menu ~ *').each ->
-    bgcolor = new RGBColor($(this).css('background-color'))
-    $(this).children('.a:nth-child(1)').css
-      'display': 'block'
-      'height': mainMenu.height()*1.26 + 'px'
-      'margin-top': -mainMenu.height()*1.26 + 'px'
-      'width': '100%'
-      'top': '0'
-      'left': '0'
-      'background': '-moz-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
-      'background': '-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223)), color-stop(80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223)), color-stop(92%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0)))'
-      'background': '-webkit-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)';
-      'background': '-o-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)';
-      'background': '-ms-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)';
-      'background': 'linear-gradient(to bottom, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)';
-
-  # Sticky Polyfill
-  i = 0
-  $('.main-menu ~ *').each ->
-
-  $(window).scroll ->
-    # Sticky Polyfill
-    if !isIOS and !Modernizr.csssticky
-      scrollTop = $(this).scrollTop()
-      # Nav
-      if (mainMenuOffsetTop - scrollTop) < 0
-        mainMenu.css 'position', 'fixed'
-        # afterMainMenu.css 'padding-top', (afterMainMenuOrgPaddingTop+mainMenu.height) + 'px'
-        afterMainMenu.css 'margin-top', mainMenu.height() + 'px'
-      else
-        mainMenu.css 'position', 'relative'
-        # afterMainMenu.css 'padding-top', (afterMainMenuOrgPaddingTop) + 'px'
-        afterMainMenu.css 'margin-top', '0'
-      # After Nav - BG
-      # if $(window).width() > tabletMinWidth
-      $('.main-menu ~ *').each ->
-        if ($(this).offset().top + $(this).height() - mainMenu.height() - scrollTop) < 12
-          $(this).children('.a:nth-child(1)').css
-            'display': 'block'
-            'position': 'absolute'
-            'margin-top': '0'
-            'top': 'auto'
-            'bottom': '0'
-        else if ($(this).offset().top - scrollTop) < mainMenu.height()*2
-          $(this).children('.a:nth-child(1)').css
-            'display': 'block'
-            'position': 'fixed'
-            'top': '0'
-            'bottom': 'auto'
-            'margin-top': '0'
-        else
-          $(this).children('.a:nth-child(1)').css
-            'display': 'none'
-      # else
-      #   $('.main-menu ~ *').children('.a:nth-child(1)').css 'display', 'none'
 
 refreshViev()
 
-# 按鈕動作
-$('.main-menu h1').click ->
-  if $(window).width() >= tabletMinWidth
-    $("html,body").animate
-      scrollTop: 0
-    , 1000
-  else
-    $('.page').toggleClass 'nav-open'
+onScroll = () ->
+  # Sticky Polyfill
+  if !isIOS and !Modernizr.csssticky
+    scrollTop = $(this).scrollTop()
+    # Nav
+    if (mainMenuOffsetTop - scrollTop) < 0
+      mainMenu.css 'position', 'fixed'
+      # afterMainMenu.css 'padding-top', (afterMainMenuOrgPaddingTop+mainMenu.height) + 'px'
+      afterMainMenu.css 'margin-top', mainMenu.height() + 'px'
+    else
+      mainMenu.css 'position', 'relative'
+      # afterMainMenu.css 'padding-top', (afterMainMenuOrgPaddingTop) + 'px'
+      afterMainMenu.css 'margin-top', '0'
+    # After Nav - BG
+    # if $(window).width() > tabletMinWidth
+    $('.main-menu ~ *').each ->
+      if ($(this).offset().top + $(this).height() - mainMenu.height() - scrollTop) < 12
+        $(this).children('.a:nth-child(1)').css
+          'display': 'block'
+          'position': 'absolute'
+          'margin-top': '0'
+          'top': 'auto'
+          'bottom': '0'
+      else if ($(this).offset().top - scrollTop) < mainMenu.height()*2
+        $(this).children('.a:nth-child(1)').css
+          'display': 'block'
+          'position': 'fixed'
+          'top': '0'
+          'bottom': 'auto'
+          'margin-top': '0'
+      else
+        $(this).children('.a:nth-child(1)').css
+          'display': 'none'
+    # else
+    #   $('.main-menu ~ *').children('.a:nth-child(1)').css 'display', 'none'
 
-# 針對不同瀏覽器及系統的處理
-if window.chrome
-  isChrome = true
-  $('body').addClass 'chrome'
-if Modernizr.touch
-  isTouch = true
-  $('body').addClass 'touch'
-else
-  $('body').addClass 'non-touch'
-if navigator.platform.toUpperCase().indexOf('MAC')>=0
-  isMac = true
-  $('body').addClass 'mac'
-if navigator.platform.match(/(iPhone|iPod|iPad)/i)
-  isIOS = true
-  $('body').addClass 'ios'
-if navigator.appVersion.match(/(Win)/i)
-  isWin = true
-  $('body').addClass 'windows'
+onScroll()
+
+# Bind Events
+
+## Global
 
 $(document).ready ->
   # lazyload all images
@@ -142,6 +136,21 @@ $(document).ready ->
     failure_limit: 10
   # Nav BG Effect
   $('.main-menu ~ *').prepend '<div class="a"></div>'
+  $('.main-menu ~ *').each ->
+    bgcolor = new RGBColor($(this).css('background-color'))
+    $(this).children('.a:nth-child(1)').css
+      'display': 'block'
+      'height': mainMenu.height()*1.26 + 'px'
+      'margin-top': -mainMenu.height()*1.26 + 'px'
+      'width': '100%'
+      'top': '0'
+      'left': '0'
+      'background': '-moz-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
+      'background': '-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223)), color-stop(80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223)), color-stop(92%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0)))'
+      'background': '-webkit-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
+      'background': '-o-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
+      'background': '-ms-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
+      'background': 'linear-gradient(to bottom, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
   refreshViev()
   setTimeout refreshViev(), 300
   setTimeout refreshViev(), 1000
@@ -159,3 +168,20 @@ $(window).resize ->
   waitForFinalEvent (->
     refreshViev()
   ), 10, "winRz"
+
+$(window).scroll ->
+  onScroll()
+  waitForFinalEvent (->
+    refreshViev()
+    onScroll()
+  ), 1000, "winAfterScr"
+
+# Click
+
+$('.main-menu h1').click ->
+  if $(window).width() >= tabletMinWidth
+    $("html,body").animate
+      scrollTop: 0
+    , 1000
+  else
+    $('.page').toggleClass 'nav-open'
