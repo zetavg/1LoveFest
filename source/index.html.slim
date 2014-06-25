@@ -25,7 +25,7 @@ layout: base_layout
       /   .bg(style="background-image: url(/images/index/scene/l7.png); background-position: 0% 100%;")
 
     .inner
-      .title
+      .title(data-parallax-rato="0.5")
         hgroup
           h2 灣樂音樂藝術節
           h1 
@@ -35,9 +35,24 @@ layout: base_layout
         .features 海洋 | 沙灘 | 日夜 | 遺跡 | 探險 | 音樂 | 藝術
   nav.main-menu= partial 'partials/nav'
 
+
+
   section.story.intro
     .inner
       iframe.embed-video(src="//www.youtube.com/embed/WAHXPEnEUZA?rel=0" frameborder="0" allowfullscreen="")
+
+  section.story.description(data-scroll-reveal-threshold="10" data-background-parallax-rato="-1")
+    .inner
+      p 
+        | 7/19號再次相約，以天際探險為名
+      p 
+        | 今年夏天灣樂音樂藝術節再次在北海岸萬里白宮行館私人金色沙灘舉辦！
+      p 
+        | 延續去年夏日海灘風光，今年灣樂帶來更多藝術與音樂結合的精采紛呈活動，保證讓人目不暇給，完全融入灣樂一日限定的海灘幻想樂園。
+      p 
+        | 想像一片未來式建築美學的測地線遺跡藝術裝置滿佈沙灘，光影動態立體舞台與絢麗燈光星火充滿眼前。國際大師級DJ/國內外頂尖表演人員/樂手輪番上陣享受聽覺饗宴；大型自由彩繪與特技雜耍表演層出不窮映入眼簾，參加知名水上活動海上鋼鐵人與最新潮流的沙灘泡泡足球賽。準備開始和我們進行一次超過16小時的天際探險，迎接北海岸最美麗的日出！
+
+
   section.horizontal-rule
     .inner
       .entry(data-scroll-reveal="enter left and move 50px over 1.33s") Foo

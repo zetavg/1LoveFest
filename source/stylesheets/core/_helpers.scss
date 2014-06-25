@@ -136,6 +136,24 @@
 	top: 0;
 }
 
+// ----- Backgrounds ------ //
+
+@mixin white_dot_background {
+
+	&::before {
+		content: " ";
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAQAAAAnZu5uAAAAHUlEQVR4AWMAgf+8/xn+AykghDF5gTAIRCKLIpgAY6EXpI/nQTYAAAAASUVORK5CYII=);
+		background-repeat: repeat;
+		background-position: 50% 50%;
+	}
+}
+
 // ----- susy: span-center ------ //
 
 @mixin span-center($columns, $total-columns) {

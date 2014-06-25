@@ -15,6 +15,8 @@ veryLargeDesktopMinWidth = 1700
 
 mainMenu = $('.main-menu')
 mainMenuOffsetTop = mainMenu.offset().top
+mainMenuHeight = mainMenu.height()
+mainMenuHeight = 90
 afterMainMenu = $('.main-menu + *')
 afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
 
@@ -60,7 +62,7 @@ refreshViev = () ->
   # 動態 css
   jsCssNode = document.getElementById('js-css')
   jsCssNode.parentNode.removeChild(jsCssNode) if jsCssNode?.parentNode
-  css = '@media screen and (max-width: ' + tabletMinWidth + 'px) { .nav-open nav.main-menu ul { height: ' + ($(window).height() - $('.main-menu').height()) + 'px; } }'
+  css = '@media screen and (max-width: ' + tabletMinWidth + 'px) { .nav-open nav.main-menu ul { height: ' + ($(window).height() - mainMenuHeight) + 'px; } }'
   # css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open { margin-bottom: -' + ($('.main-menu ul li').length*50 + 18) + 'px; } }'
   # css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open ~ * .a:nth-child(1) { height: ' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; margin-top: -' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; } }'
   head = document.head or document.getElementsByTagName("head")[0]
@@ -75,9 +77,8 @@ refreshViev = () ->
 
   # Nav
   mainMenu = $('.main-menu')
-  mainMenu.css 'position', 'relative'
+  mainMenu.css 'position', 'relative' if !isIOS and !Modernizr.csssticky
   mainMenuOffsetTop = mainMenu.offset().top
-  console.log "$('.main-menu').offset().top = " + mainMenuOffsetTop
   afterMainMenu = $('.main-menu + *')
   afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
   $('.wrapper').css 'background-color', $('.main-menu + *').css('background-color')
@@ -91,23 +92,20 @@ onScroll = () ->
     # Nav
     if (mainMenuOffsetTop - scrollTop) < 0
       mainMenu.css 'position', 'fixed'
-      # afterMainMenu.css 'padding-top', (afterMainMenuOrgPaddingTop+mainMenu.height) + 'px'
-      afterMainMenu.css 'margin-top', mainMenu.height() + 'px'
+      afterMainMenu.css 'margin-top', mainMenuHeight + 'px'
     else
       mainMenu.css 'position', 'relative'
-      # afterMainMenu.css 'padding-top', (afterMainMenuOrgPaddingTop) + 'px'
       afterMainMenu.css 'margin-top', '0'
     # After Nav - BG
-    # if $(window).width() > tabletMinWidth
     $('.main-menu ~ *').each ->
-      if ($(this).offset().top + $(this).height() - mainMenu.height() - scrollTop) < 12
+      if ($(this).offset().top + $(this).height() - mainMenuHeight - scrollTop) < 1
         $(this).children('.a:nth-child(1)').css
           'display': 'block'
           'position': 'absolute'
           'margin-top': '0'
           'top': 'auto'
           'bottom': '0'
-      else if ($(this).offset().top - scrollTop) < mainMenu.height()*2
+      else if ($(this).offset().top - scrollTop) < mainMenuHeight*2
         $(this).children('.a:nth-child(1)').css
           'display': 'block'
           'position': 'fixed'
@@ -117,8 +115,38 @@ onScroll = () ->
       else
         $(this).children('.a:nth-child(1)').css
           'display': 'none'
-    # else
-    #   $('.main-menu ~ *').children('.a:nth-child(1)').css 'display', 'none'
+  # Scroll Reveal
+  if !isIOS
+    scrollTop = $(this).scrollTop()
+    $('*[data-scroll-reveal-threshold]').each ->
+      if ($(this).offset().top + $(this).height() + parseInt($(this).attr('data-scroll-reveal-threshold')) - scrollTop - $(window).height()) < 0
+        $(this).addClass 'in'
+      else
+        $(this).removeClass 'in'
+  else
+    $('*[data-scroll-reveal-threshold]').addClass 'in'
+
+  # Parallax Scrolling
+  if $(window).width() >= tabletMinWidth and !isIOS
+    scrollTop = $(this).scrollTop()
+    $('*[data-background-parallax-rato]').each ->
+      if ($(this).offset().top < scrollTop+800 + $(window).height()) and (($(this).offset().top + $(this).height()) > scrollTop-800)
+        sStart = $(this).offset().top - $(window).height()
+        sEnd = $(this).offset().top + $(this).height()
+        pRate = (scrollTop - sStart)/(sEnd - sStart)
+        $(this).css 'background-position-y', ((pRate - 0.5)*100*parseFloat($(this).attr('data-background-parallax-rato')) + 50) + '%'
+    $('*[data-parallax-rato]').each ->
+      if ($(this).offset().top < scrollTop+800 + $(window).height()) and (($(this).offset().top + $(this).height()) > scrollTop-800)
+        sStart = $(this).offset().top - $(window).height()
+        sEnd = $(this).offset().top + $(this).height()
+        pPx = (scrollTop - (sEnd + sStart)/2) * parseFloat($(this).attr('data-parallax-rato'))
+        $(this).children('*').css
+          'transform': 'translateY(' + pPx + 'px)'
+          '-webkit-transform': 'translateY(' + pPx + 'px)'
+          '-moz-transform': 'translateY(' + pPx + 'px)'
+          '-ms-transform': 'translateY(' + pPx + 'px)'
+          '-o-transform': 'translateY(' + pPx + 'px)'
+
 
 onScroll()
 
@@ -140,17 +168,12 @@ $(document).ready ->
     bgcolor = new RGBColor($(this).css('background-color'))
     $(this).children('.a:nth-child(1)').css
       'display': 'block'
-      'height': mainMenu.height()*1.26 + 'px'
-      'margin-top': -mainMenu.height()*1.26 + 'px'
+      'height': ((mainMenuHeight)*1) + 'px'
+      'margin-top': -((mainMenuHeight)*1) + 'px'
       'width': '100%'
       'top': '0'
       'left': '0'
-      'background': '-moz-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
-      'background': '-webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223)), color-stop(80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223)), color-stop(92%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0)))'
-      'background': '-webkit-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
-      'background': '-o-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
-      'background': '-ms-linear-gradient(top, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
-      'background': 'linear-gradient(to bottom, rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 0%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223) 80%,rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0) 92%)'
+      'background-color': 'rgba(' + bgcolor.r + ',' + bgcolor.g + ',' + bgcolor.b + ',0.9223)'
   refreshViev()
   setTimeout refreshViev(), 300
   setTimeout refreshViev(), 1000

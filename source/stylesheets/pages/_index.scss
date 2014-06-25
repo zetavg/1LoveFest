@@ -206,6 +206,24 @@
 	}
 
 	// -------------------------------------
+	//   Description
+	// -------------------------------------
+
+	.story.description {
+		@include white_dot_background;
+		@include background-image(image-url("photos/CM1B3621.jpg"));
+		@include background-size(cover);
+		background-position: fixed;
+
+		.inner {
+			background-color: rgba($black, .52);
+			text-align: center;
+			padding-top: 0px;
+			padding-bottom: 30px;
+		}
+	}
+
+	// -------------------------------------
 	//   Intro
 	// -------------------------------------
 
@@ -231,7 +249,7 @@
 	.story.artists {
 		// background-color: $black;
 		padding: 0;
-		@extend %white_grid_background;
+		@include white_dot_background;
 
 		.inner {
 			padding-top: 40px;
