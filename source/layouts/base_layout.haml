@@ -17,6 +17,10 @@
     %meta{name: "og:site_name", content: data.config.siteName}
     %meta{name: "og:image", content: current_page.data.og_image || data.config.siteOgImage}
 
+    %link{rel: "favicon", href: "/images/favicon.png"}
+    %link{rel: "shortcut icon", href: "/images/favicon.png"}
+    %link{rel: "apple-touch-icon", href: "/images/apple-touch-icon.png"}
+
     = stylesheet_link_tag "all"
 
     = partial "partials/justfont"

@@ -25,7 +25,7 @@ layout: base_layout
       /   .bg(style="background-image: url(/images/index/scene/l7.png); background-position: 0% 100%;")
 
     .inner
-      .title(data-parallax-rato="0.5")
+      .title(data-parallax-rato="0.5" data-parallax-offset="10")
         hgroup
           h2 灣樂音樂藝術節
           h1 
@@ -39,7 +39,45 @@ layout: base_layout
 
   section.story.intro
     .inner
-      iframe.embed-video(src="//www.youtube.com/embed/WAHXPEnEUZA?rel=0" frameborder="0" allowfullscreen="")
+      #video.embed-video
+      javascript:
+        var tag = document.createElement('script');
+
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player;
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('video', {
+            videoId: 'LmsRQs4IbxU',
+            playerVars: { 
+              listType:'playlist',
+              list: 'PL75SvviP4SAf00rQVnPiGmHyW7R1sUm_k',
+              loop: 1
+            },
+            events: {
+              'onReady': onPlayerReady
+            }
+          });
+          player.setPlaybackQuality('large');
+        }
+
+        function onPlayerReady() {
+          checkS();
+        }
+
+        function checkS() {
+          if (!Modernizr.touch) {
+            if ($(this).scrollTop() > ($('#video').offset().top + $('#video').height() - $(window).height())) {
+              //player.playVideo();
+            } else {
+              setTimeout(checkS, 1000);
+            }
+          }
+        }
+
+
 
   section.story.description(data-scroll-reveal-threshold="10" data-background-parallax-rato="-1")
     .inner

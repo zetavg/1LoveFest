@@ -65,6 +65,13 @@ refreshViev = () ->
   css = '@media screen and (max-width: ' + tabletMinWidth + 'px) { .nav-open nav.main-menu ul { height: ' + ($(window).height() - mainMenuHeight) + 'px; } }'
   # css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open { margin-bottom: -' + ($('.main-menu ul li').length*50 + 18) + 'px; } }'
   # css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open ~ * .a:nth-child(1) { height: ' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; margin-top: -' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; } }'
+  # Nav 分散對齊
+  i = 92 # icon
+  $('nav.main-menu ul').children().each ->
+    i += $(this).width()
+  m = ($('nav.main-menu ul').width() - i)/$('nav.main-menu ul').children().length - 1
+  m = 50 if m > 50
+  css += '@media screen and (min-width: ' + tabletMinWidth + 'px) { nav.main-menu ul li { margin-left: ' + m + 'px; } }'
   head = document.head or document.getElementsByTagName("head")[0]
   style = document.createElement("style")
   style.type = "text/css"
@@ -81,7 +88,7 @@ refreshViev = () ->
   mainMenuOffsetTop = mainMenu.offset().top
   afterMainMenu = $('.main-menu + *')
   afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
-  $('.wrapper').css 'background-color', $('.main-menu + *').css('background-color')
+  # $('.wrapper').css 'background-color', $('.main-menu + *').css('background-color')
 
 refreshViev()
 
@@ -126,27 +133,25 @@ onScroll = () ->
   else
     $('*[data-scroll-reveal-threshold]').addClass 'in'
 
-  # Parallax Scrolling
-  if $(window).width() >= tabletMinWidth and !isIOS
-    scrollTop = $(this).scrollTop()
-    $('*[data-background-parallax-rato]').each ->
-      if ($(this).offset().top < scrollTop+800 + $(window).height()) and (($(this).offset().top + $(this).height()) > scrollTop-800)
-        sStart = $(this).offset().top - $(window).height()
-        sEnd = $(this).offset().top + $(this).height()
-        pRate = (scrollTop - sStart)/(sEnd - sStart)
-        $(this).css 'background-position-y', ((pRate - 0.5)*100*parseFloat($(this).attr('data-background-parallax-rato')) + 50) + '%'
-    $('*[data-parallax-rato]').each ->
-      if ($(this).offset().top < scrollTop+800 + $(window).height()) and (($(this).offset().top + $(this).height()) > scrollTop-800)
-        sStart = $(this).offset().top - $(window).height()
-        sEnd = $(this).offset().top + $(this).height()
-        pPx = (scrollTop - (sEnd + sStart)/2) * parseFloat($(this).attr('data-parallax-rato'))
-        $(this).children('*').css
-          'transform': 'translateY(' + pPx + 'px)'
-          '-webkit-transform': 'translateY(' + pPx + 'px)'
-          '-moz-transform': 'translateY(' + pPx + 'px)'
-          '-ms-transform': 'translateY(' + pPx + 'px)'
-          '-o-transform': 'translateY(' + pPx + 'px)'
-
+  # # Parallax Scrolling
+  # if $(window).width() >= tabletMinWidth and !isIOS
+  #   scrollTop = $(this).scrollTop()
+  #   winHeight = $(window).height()
+  #   $('*[data-background-parallax-rato]').each ->
+  #     if ($(this).offset().top < scrollTop+80 + winHeight) and (($(this).offset().top + $(this).height()) > scrollTop-80)
+  #       sStart = $(this).offset().top - winHeight
+  #       px = scrollTop - sStart
+  #       $(this).css 'background-position-y', -(px*parseFloat($(this).attr('data-background-parallax-rato'))) + 'px'
+  #   $('*[data-parallax-rato]').each ->
+  #     container = $(this).parent()
+  #     cot = container.offset().top
+  #     ch = container.height()
+  #     if (cot < scrollTop+800 + winHeight) and ((cot + ch) > scrollTop-800)
+  #       sStart = cot - winHeight
+  #       sEnd = cot + ch
+  #       pPx = (scrollTop - (sEnd + sStart)/2) * parseFloat($(this).attr('data-parallax-rato'))
+  #       # $(this).css
+  #       #   'top': pPx + 'px'
 
 onScroll()
 
@@ -207,4 +212,8 @@ $('.main-menu h1').click ->
       scrollTop: 0
     , 1000
   else
+    if $(this).scrollTop() < $('.main-menu').offset().top
+      $("html,body").animate
+        scrollTop: $('.main-menu').offset().top
+      , 500
     $('.page').toggleClass 'nav-open'

@@ -2,7 +2,7 @@ module NavHelpers
   def nav_link(link_text, link_path)
 
     if link_path[/^https?:\/\//] then
-      content_tag(:li, :class => 'cross-domin') do
+      content_tag(:li, :class => 'cross-domin', :data => {:title => link_text}) do
         '<a href="' + link_path + '" target="_blank" class="cross-domin">' + link_text + '</a>'
       end
 
@@ -13,7 +13,7 @@ module NavHelpers
         is_active = 'active'
       end
 
-      content_tag(:li, :class => is_active) do
+      content_tag(:li, :class => is_active, :data => {:title => link_text}) do
         link_to link_text, link_path
       end
     end
