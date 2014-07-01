@@ -70,7 +70,7 @@ layout: base_layout
         function checkS() {
           if (!Modernizr.touch) {
             if ($(this).scrollTop() > ($('#video').offset().top + $('#video').height() - $(window).height())) {
-              //player.playVideo();
+              player.playVideo();
             } else {
               setTimeout(checkS, 1000);
             }
