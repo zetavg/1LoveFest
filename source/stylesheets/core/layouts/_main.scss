@@ -4,23 +4,132 @@
 // -------------------------------------
 
 main {
+	@include white_dot_background;
+	background-color: #07090c;
+	// z-index: 95;
 
 	.inner {
 		@include container($total-columns, $tablet, $desktop);
+		padding-left: 0;
+		padding-right: 0;
+		overflow: visible;
 
-		// ----- Tablet - ----- //
-		@include respond-to($tablet, max-width) {
+		.toc {
+			display: none;
 
+			ul {
+				padding-top: 15px;
+				margin: 0;
+			}
+
+			li {
+				list-style: none;
+				display: block;
+				position: relative;
+				height: 24px*1.4;
+
+				&::before {
+					content: " ";
+					display: block;
+					position: absolute;
+					z-index: 1;
+					width: 0;
+					height: 92%;
+					top: 4%;
+					background-color: rgba($white, .08);
+				}
+
+				&:hover::before {
+					background-color: rgba($white, .2);
+				}
+
+				a {
+					display: block;
+					position: relative;
+					top: 0;
+					z-index: 100;
+					@include rhythm-to(0, 0.2, 0.2, 0, 24px);
+				}
+
+				&.active {
+					height: 36px*1.4;
+
+					a {
+						@include rhythm-to(0, 0.2, 0.2, 0, 36px);
+					}
+				}
+			}
+		}
+
+		.content {
+			@include span-columns($total-columns, $total-columns);
+
+			#{headings()} {
+				color: $white;
+			}
+		}
+
+		.toc, .content {
+			padding: 30px 1em 0;
+			position: relative;
+
+			> * {
+				position: relative;
+				z-index: 40;
+			}
+
+			&::before {
+				content: " ";
+				display: block;
+				position: absolute;
+				z-index: 1;
+				width: 100%;
+				top: 0;
+				left: 0;
+				height: 100%;
+				background-color: rgba($black, .52);
+			}
 		}
 
 		// ----- Tablet + ----- //
 		@include at-breakpoint($tablet) {
+
+			.content {
+				@include span-columns($tablet-columns omega, $tablet-columns);
+			}
+
+			.toc {
+				display: block;
+				@include span-columns(3, $tablet-columns);
+				top: 0;
+
+				.csssticky & ul {
+					@include position-sticky;
+					top: $nav-height + $nav-padding*2;
+				}
+			}
+
+			.toc ~ .content {
+				@include span-columns($tablet-columns - 3 omega, $tablet-columns);
+			}
 
 		}
 
 		// ----- Desktop + ----- //
 		@include at-breakpoint($desktop) {
 
+			.content {
+				@include span-columns($desktop-columns omega, $desktop-columns);
+			}
+
+			.toc {
+				display: block;
+				@include span-columns(3, $desktop-columns);
+			}
+
+			.toc ~ .content {
+				@include span-columns($desktop-columns - 3 omega, $desktop-columns);
+			}
 		}
 
 		// ----- XXL Desktop + ----- //

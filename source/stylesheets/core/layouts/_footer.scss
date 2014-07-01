@@ -5,6 +5,83 @@
 
 footer {
 	@extend %white_grid_background;
+	background-color: #6A859E;
+	@include background-image(linear-gradient(top, #6985a0 0%, #838c89 30%, #b5a085 80%));
+	@include background-image(image-url("photos/CM1B3278.jpg"));
+	@include background-size(cover);
+	background-position: 50% 100%;
+
+	.event-info {
+
+		> * > *:first-child {
+			display: block;
+			margin-top: 30px;
+			margin-bottom: 12px;
+		}
+
+		> * > *:last-child {
+			display: block;
+			margin-bottom: 30px;
+		}
+
+		.title {
+			display: inline;
+			background-color: $black;
+			color: $white;
+			font-size: rem(32px);
+			line-height: normal;
+			padding: 2px 4px;
+		}
+
+		.date {
+			background-color: $black;
+			color: $white;
+			font-size: rem(32px);
+			line-height: normal;
+			padding: 2px 4px;
+
+			& + * {
+				margin-top: 30px;
+			}
+		}
+
+		.location {
+			display: none;
+
+			&, * {
+				color: $black;
+			}
+
+			p {
+				display: inline-block;
+			}
+
+			&::before {
+				content: "@";
+			}
+		}
+
+		.other {
+			display: none;
+
+			&, * {
+				color: $black;
+			}
+
+			ul {
+				margin: 0;
+			}
+
+			li {
+				list-style: none;
+				display: inline-block;
+				background-color: $black;
+				color: $white;
+				padding: 2px 4px;
+				line-height: normal;
+			}
+		}
+	}
 
 	.map-wrapper {
 		overflow: hidden;
@@ -14,6 +91,7 @@ footer {
 		}
 
 		.inner {
+			@include clearfix;
 			position: relative;
 
 			&::before, &::after {
@@ -39,8 +117,13 @@ footer {
 
 	}
 
+	.about {
+		background-color: $black;
+		@include background-image(none);
+	}
+
 	.inner {
-		background-color: rgba($white, .08);
+		background-color: rgba($white, .28);
 
 		@include container($total-columns, $tablet, $desktop);
 
@@ -62,6 +145,44 @@ footer {
 		// ----- XXL Desktop + ----- //
 		@include respond-to($very-large-desktop-min-width) {
 
+		}
+	}
+
+	.map {
+		height: 260px;
+	}
+}
+
+.non-touch footer {
+
+	.map-wrapper {
+
+		.inner {
+			margin: 0;
+			width: 100%;
+			padding: 0;
+		}
+
+		.gm-style {
+			@include container($total-columns, $tablet, $desktop);
+			position: relative !important;
+			left: auto !important;
+			right: auto !important;
+			margin: auto !important;
+
+			> *:first-child {
+				position: fixed !important;
+			}
+
+			@for $i from 10 through 160 {
+				@include respond-to($i*10 + px) {
+					& {
+						max-width: none !important;
+						width: ($i - round($i/10) - 1)*10 + 1px !important;
+						// left: calc(50% - (($i - round($i/10) - 1)*10 + 1px)/2) !important;
+					}
+				}
+			}
 		}
 	}
 }

@@ -1,0 +1,184 @@
+// *************************************
+//
+//   Module
+//   -> This is an example module
+//
+// *************************************
+
+.inner.tickets {
+	padding: 0;
+	overflow: visible;
+}
+
+.ticket {
+	@include span-columns($total-columns omega, $total-columns);
+	position: relative;
+	// z-index: 50;
+	background-color: #e8e8e0;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	color: #4d3d30;
+	color: #5d4d40;
+	padding: 24px 22px;
+	@include box-shadow(0 1px 6px rgba(0, 0, 0, 0.4), 0 0 40px rgba(0, 0, 0, 0.1) inset);
+
+	&::after {
+		content: " ";
+		z-index: -1;
+		position: absolute;
+		bottom: 15px;
+		right: 6px;
+		left: auto;
+		width: 50%;
+		top: 80%;
+		max-width:300px;
+		background: #777;
+		font-size: rem(14px);
+		@include box-shadow(0 15px 14px rgba(0, 0, 0, 0.5));
+		@include transform(rotate(3deg));
+	}
+
+	> *:first-child::before {
+		content: " ";
+		display: block;
+		height: 10px;
+		border-top: 3px solid rgba($base-bgc, .2);
+		border-bottom: 3px solid rgba($base-bgc, .2);
+		margin-bottom: 12px;
+	}
+
+	> *:last-child::after {
+		content: " ";
+		display: block;
+		height: 10px;
+		border-top: 3px solid rgba($base-bgc, .2);
+		border-bottom: 3px solid rgba($base-bgc, .2);
+		margin-top: 12px;
+		clear: both;
+	}
+
+	hgroup {
+		margin-bottom: 20px;
+
+		h1 {
+			margin: 0;
+			padding: 0;
+			font-size: rem(24px);
+		}
+
+		h2 {
+			margin: 0;
+			padding: 0;
+			font-size: rem(18px);
+			color: darken($base-link-color, 10%);
+		}
+	}
+
+	li {
+		list-style: none;
+	}
+
+	p.price {
+		// display: inline-block;
+		margin-bottom: 4px;
+		font-size: rem(24px);
+		color: lighten(#5d4d40, 20%);
+	}
+
+	.action {
+		text-align: right;
+		margin-top: -52px;
+		float: right;
+
+		a.price {
+			display: inline-block;
+			@include border-radius(4px);
+			border: 1px solid #5d4d40;
+			padding: 10px 22px;
+			color: darken($base-link-color, 10%);
+			@include transition-property(color, background-color);
+			@include transition-duration(.3s);
+		}
+
+		a.price:hover {
+			background-color: #5d4d40;
+			color: $white;
+			text-decoration: none;
+		}
+
+		a.price ~ p {
+			font-size: rem(10px);
+			color: lighten(#5d4d40, 10%);
+			margin-bottom: 0;
+		}
+	}
+
+	// ----- Tablet + ----- //
+	@include at-breakpoint($tablet) {
+
+		@include span-columns($tablet-columns/2 + 1, $tablet-columns);
+
+	}
+
+	// ----- Desktop + ----- //
+	@include at-breakpoint($desktop) {
+
+		@include span-columns($desktop-columns/2 + 1, $desktop-columns);
+	}
+}
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+.ticket--small {
+	@include span-columns($total-columns - 2 omega, $total-columns);
+	@include pre(1);
+	@include post(1);
+
+	// ----- Tablet + ----- //
+	@include at-breakpoint($tablet) {
+
+		@include span-columns($tablet-columns/2 omega, $tablet-columns);
+		@include pre(0);
+
+		&.ticket--pull {
+			position: absolute;
+			width: 100%;
+			padding-left: space($tablet-columns/2 + 1, $tablet-columns);
+		}
+	}
+
+	// ----- Desktop + ----- //
+	@include at-breakpoint($desktop) {
+
+		@include span-columns($desktop-columns/2 omega, $desktop-columns);
+		@include pre(0);
+
+		&.ticket--pull {
+			position: absolute;
+			width: 100%;
+			padding-left: space($desktop-columns/2 + 1, $desktop-columns);
+		}
+	}
+}
+
+// -------------------------------------
+//   States
+// -------------------------------------
+
+// .is-module-state
+
+// -------------------------------------
+//   Context
+// -------------------------------------
+
+// .has-module
+
+// -------------------------------------
+//   Submodules
+// -------------------------------------
+
+// ----- Submodule ----- //
+
+// .module-submodule

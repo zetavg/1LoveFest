@@ -2,5 +2,7 @@
   .page
     %header= partial 'partials/header'
     %nav.main-menu= partial 'partials/nav'
-    %main= yield
+    %main
+      .fixbg-wrapper
+        .inner= yield
     %footer= partial 'partials/footer'

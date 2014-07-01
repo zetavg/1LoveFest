@@ -8,20 +8,22 @@ header {
 
 	.inner {
 		@include container($total-columns, $tablet, $desktop);
+		padding-top: 30px;
 
 		.title {
-			h1 {
-				// @extend .icon;
-			}
+			@include span-columns($total-columns - 2, $total-columns);
 		}
 
-		// ----- Tablet - ----- //
-		@include respond-to($tablet, max-width) {
-
+		.action {
+			@include span-columns(2 omega, $total-columns);
 		}
 
 		// ----- Tablet + ----- //
 		@include at-breakpoint($tablet) {
+
+			.title {
+				@include span-columns($tablet-columns - 2, $tablet-columns);
+			}
 
 			.action {
 				@include span-columns(2 omega, $tablet-columns);
@@ -30,6 +32,10 @@ header {
 
 		// ----- Desktop + ----- //
 		@include at-breakpoint($desktop) {
+
+			.title {
+				@include span-columns($desktop-columns - 2, $desktop-columns);
+			}
 
 			.action {
 				@include span-columns(2 omega, $desktop-columns);

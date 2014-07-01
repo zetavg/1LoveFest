@@ -7,7 +7,7 @@ console.log 'Hello and welcome to One Love DancingFest 👋'
 smallPhoneMinWidth = 341
 phoneMinWidth = 421
 tabletMinWidth = 801
-desktopMinWidth = 1001
+desktopMinWidth = 1025
 largeDesktopMinWidth = 1441
 veryLargeDesktopMinWidth = 1700
 
@@ -19,6 +19,12 @@ mainMenuHeight = mainMenu.height()
 mainMenuHeight = 90
 afterMainMenu = $('.main-menu + *')
 afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
+toc = $('main .toc ul')
+tocHeight = 0
+tocOffsetTop = 0
+main = $('main')
+mainHeight = 0
+mainOffsetTop = 0
 
 # Helpers
 
@@ -51,6 +57,8 @@ if navigator.platform.match(/(iPhone|iPod|iPad)/i)
 if navigator.appVersion.match(/(Win)/i)
   isWin = true
   $('body').addClass 'windows'
+if Modernizr.csssticky
+  $('body').addClass 'csssticky'
 
 # Layout Functions
 
@@ -63,6 +71,8 @@ refreshViev = () ->
   jsCssNode = document.getElementById('js-css')
   jsCssNode.parentNode.removeChild(jsCssNode) if jsCssNode?.parentNode
   css = '@media screen and (max-width: ' + tabletMinWidth + 'px) { .nav-open nav.main-menu ul { height: ' + ($(window).height() - mainMenuHeight) + 'px; } }'
+  css += 'main .inner .toc, main .inner .content::before { height: ' + $('main .inner').height() + 'px; }'
+  css += 'main .inner .toc li::before { width: ' + $('main').width() + 'px; left: -' + $('main .inner .toc li').offset()?.left + 'px; }'
   # css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open { margin-bottom: -' + ($('.main-menu ul li').length*50 + 18) + 'px; } }'
   # css += '@media screen and (max-width: ' + tabletMinWidth + 'px) { .main-menu.open ~ * .a:nth-child(1) { height: ' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; margin-top: -' + ($('.main-menu ul li').length*50 + 18)*1.26 + 'px !important; } }'
   # Nav 分散對齊
@@ -88,7 +98,28 @@ refreshViev = () ->
   mainMenuOffsetTop = mainMenu.offset().top
   afterMainMenu = $('.main-menu + *')
   afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
+  # toc
+  main = $('main')
+  toc = $('main .toc ul')
+  if toc.length
+    mainHeight = main.height()
+    mainOffsetTop = main.offset().top
+    toc.css 'position', 'relative' if !isIOS and !Modernizr.csssticky
+    tocHeight = toc.height()
+    tocOffsetTop = toc.offset().top
   # $('.wrapper').css 'background-color', $('.main-menu + *').css('background-color')
+
+  $('.ticket--pull').each ->
+    if $(window).width() >= tabletMinWidth
+      $(this).css
+        'top': ($(this).next().height() - $(this).height())/2 + 'px'
+      $(this).next().css
+        'top': '0'
+    else
+      $(this).css
+        'top': ($(this).next().height() + 48) + 'px'
+      $(this).next().css
+        'top': (- $(this).height() - 60) + 'px'
 
 refreshViev()
 
@@ -122,6 +153,23 @@ onScroll = () ->
       else
         $(this).children('.a:nth-child(1)').css
           'display': 'none'
+    # toc
+    if toc.length
+      if scrollTop > mainOffsetTop + mainHeight - mainMenuHeight - tocHeight
+        toc.css
+          'position': 'absolute'
+          'top': 'auto'
+          'bottom': '0'
+      else if (tocOffsetTop - scrollTop - mainMenuHeight) < 0
+        toc.css
+          'position': 'fixed'
+          'top': (mainMenuHeight + 'px')
+          'bottom': 'auto'
+      else
+        toc.css
+          'position': 'relative'
+          'top': '0'
+          'bottom': 'auto'
   # Scroll Reveal
   if !isIOS
     scrollTop = $(this).scrollTop()

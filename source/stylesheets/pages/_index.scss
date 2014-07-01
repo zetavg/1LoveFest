@@ -213,12 +213,13 @@
 		@include white_dot_background;
 		@include background-image(image-url("photos/CM1B3621.jpg"));
 		@include background-size(cover);
-		background-position: fixed;
+		// background-attachment: fixed;
+		background-color: #07090c;
 
 		.inner {
 			background-color: rgba($black, .52);
 			text-align: center;
-			padding-top: 0px;
+			padding-top: 60px;
 			padding-bottom: 30px;
 		}
 	}
@@ -228,7 +229,7 @@
 	// -------------------------------------
 
 	.story.intro {
-		background-color: $black;
+		background-color: #1b1b1b;
 		padding: 0;
 
 		.inner {
@@ -265,6 +266,37 @@
 	.story.installations {
 		background-color: $black;
 		padding: 20px 0;
+	}
+
+	footer {
+
+		.location {
+			display: block;
+		}
+
+		.other {
+			display: block;
+		}
+
+		.map {
+			height: 280px;
+
+			@include respond-to($tablet-min-width) {
+				height: 300px;
+			}
+
+			@include respond-to($desktop-min-width) {
+				height: 500px;
+			}
+
+			@include respond-to($very-large-desktop-min-width) {
+				height: 500px;
+			}
+
+			img {
+				max-width: none;
+			}
+		}
 	}
 }
 
