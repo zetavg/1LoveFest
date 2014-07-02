@@ -91,10 +91,30 @@ section, main, header, footer {
 
 .fixbg-wrapper {
 	position: static;
-	@include background(image-url("photos/CM1B3621.jpg"));
+	@include background-image(image-url("photos/CM1B3621.jpg"));
 	@include background-size(cover);
 	background-attachment: fixed;
 	background-position: 50% 50%;
+}
+
+.lineup .fixbg-wrapper {
+	@include background-image(image-url("photos/CM1B3832.jpg"));
+}
+
+.space .fixbg-wrapper {
+	@include background-image(image-url("photos/CM1B3453.jpg"));
+}
+
+.tickets .fixbg-wrapper {
+	@include background-image(image-url("photos/CM1B3621.jpg"));
+}
+
+.info .fixbg-wrapper {
+	@include background-image(image-url("photos/CM1B3620.jpg"));
+}
+
+.contact .fixbg-wrapper {
+	@include background-image(image-url("photos/CM1B3407.jpg"));
 }
 
 // -------------------------------------

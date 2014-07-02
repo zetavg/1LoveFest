@@ -71,14 +71,14 @@ layout: base_layout
 
   section.story.description(data-scroll-reveal-threshold="10" data-background-parallax-rato="-1")
     .inner
-      p(data-scroll-reveal="enter from the bottom over 1s")
-        | 7/19號再次相約，以天際探險為名
-      p(data-scroll-reveal="wait 1s and then enter from the bottom over 1s")
+      h1(data-scroll-reveal="enter from the bottom over 1s")
+        | 7/19 號再次相約，以天際探險為名
+      h2(data-scroll-reveal="wait 1s and then enter from the bottom over 1s")
         | 今年夏天灣樂音樂藝術節再次在北海岸萬里白宮行館私人金色沙灘舉辦！
-      p(data-scroll-reveal="wait 2s and then enter from the bottom over 1s")
+      h2(data-scroll-reveal="wait 2s and then enter from the bottom over 1s")
         | 延續去年夏日海灘風光，今年灣樂帶來更多藝術與音樂結合的精采紛呈活動，保證讓人目不暇給，完全融入灣樂一日限定的海灘幻想樂園。
-      p(data-scroll-reveal="wait 3s and then enter from the bottom over 1s")
-        | 想像一片未來式建築美學的測地線遺跡藝術裝置滿佈沙灘，光影動態立體舞台與絢麗燈光星火充滿眼前。國際大師級DJ/國內外頂尖表演人員/樂手輪番上陣享受聽覺饗宴；大型自由彩繪與特技雜耍表演層出不窮映入眼簾，參加知名水上活動海上鋼鐵人與最新潮流的沙灘泡泡足球賽。準備開始和我們進行一次超過16小時的天際探險，迎接北海岸最美麗的日出！
+      h2(data-scroll-reveal="wait 3s and then enter from the bottom over 1s")
+        | 想像一片未來式建築美學的測地線遺跡藝術裝置滿佈沙灘，光影動態立體舞台與絢麗燈光星火充滿眼前。國際大師級 DJ / 國內外頂尖表演人員 / 樂手 輪番上陣享受聽覺饗宴；大型自由彩繪與特技雜耍表演層出不窮映入眼簾，參加知名水上活動海上鋼鐵人與最新潮流的沙灘泡泡足球賽。準備開始和我們進行一次超過 16 小時的天際探險，迎接北海岸最美麗的日出！
 
 
   / section.horizontal-rule
@@ -87,34 +87,21 @@ layout: base_layout
   /     .entry(data-scroll-reveal="enter from the bottom after 1s") Bar
   /     .entry(data-scroll-reveal="wait 2.5s and then ease-in-out 100px") Baz
 
-  / section.story.artists
-  /   .inner
-  /     p 
-  /       | 7/19號再次相約，以天際探險為名
-  /     p 
-
-
-  /       | 今年夏天灣樂音樂藝術節再次在北海岸萬里白宮行館私人金色沙灘舉辦！
-  /     p 
-
-  /       | 延續去年夏日海灘風光，今年灣樂帶來更多藝術與音樂結合的精采紛呈活動，保證讓人目不暇給，完全融入灣樂一日限定的海灘幻想樂園。
-  /     p 
-
-  /       | 想像一片未來式建築美學的測地線遺跡藝術裝置滿佈沙灘，光影動態立體舞台與絢麗燈光星火充滿眼前。國際大師級DJ/國內外頂尖表演人員/樂手輪番上陣享受聽覺饗宴；大型自由彩繪與特技雜耍表演層出不窮映入眼簾，參加知名水上活動海上鋼鐵人與最新潮流的沙灘泡泡足球賽。準備開始和我們進行一次超過16小時的天際探險，迎接北海岸最美麗的日出！
-
-  /     p 
-  /       | 7/19號再次相約，以天際探險為名
-  /     p 
-
-
-  /       | 今年夏天灣樂音樂藝術節再次在北海岸萬里白宮行館私人金色沙灘舉辦！
-  /     p 
-
-  /       | 延續去年夏日海灘風光，今年灣樂帶來更多藝術與音樂結合的精采紛呈活動，保證讓人目不暇給，完全融入灣樂一日限定的海灘幻想樂園。
-  /     p 
-
-  /       | 想像一片未來式建築美學的測地線遺跡藝術裝置滿佈沙灘，光影動態立體舞台與絢麗燈光星火充滿眼前。國際大師級DJ/國內外頂尖表演人員/樂手輪番上陣享受聽覺饗宴；大型自由彩繪與特技雜耍表演層出不窮映入眼簾，參加知名水上活動海上鋼鐵人與最新潮流的沙灘泡泡足球賽。準備開始和我們進行一次超過16小時的天際探險，迎接北海岸最美麗的日出！
-
+  section.story.artists
+    .inner
+      .djs
+        .dj
+          .img= ll_img "DJs/apple.jpg"
+          .name @pple
+        .dj
+          .img= ll_img "DJs/Yakashi.jpg"
+          .name Yakashi
+        .dj
+          .img= ll_img "DJs/Dark.jpg"
+          .name Dark
+        .dj
+          .img= ll_img "DJs/Sona.jpg"
+          .name Sona
   / section.story.installations
   /     p 
 

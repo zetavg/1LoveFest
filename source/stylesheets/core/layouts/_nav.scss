@@ -361,3 +361,14 @@ nav.main-menu {
 	// 	}
 	// }
 }
+
+@media only screen and (max-width: 600px) {
+
+	nav.main-menu h1 {
+		font-size: 72px;
+	}
+
+	nav.main-menu h1::after {
+		left: 62px;
+	}
+}

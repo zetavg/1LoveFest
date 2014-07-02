@@ -118,6 +118,7 @@
 
 			h1, h1 * {
 				font-family: "1LoveFest-Italic";
+				font-style: normal;
 			}
 		}
 
@@ -226,13 +227,23 @@
 		@include background-image(image-url("photos/CM1B3621.jpg"));
 		@include background-size(cover);
 		// background-attachment: fixed;
-		background-color: #07090c;
+		background-color: #2f281b;
 
 		.inner {
 			background-color: rgba($black, .52);
 			text-align: center;
 			padding-top: 60px;
 			padding-bottom: 30px;
+
+			h1 {
+				color: $white;
+				@include rhythm-to(0, 0, 0, 1, 37px);
+			}
+
+			h2 {
+				color: $white;
+				@include rhythm-to(1, 0.5, 0.5, 0, 20px);
+			}
 		}
 	}
 
@@ -268,6 +279,222 @@
 			padding-top: 40px;
 			padding-bottom: 40px;
 			background-color: rgba($white, .2);
+		}
+
+		.djs {
+			height: 400px;
+
+			.dj {
+				position: absolute;
+
+				img {
+					width: 100%;
+				}
+
+				.name {
+					display: inline-block;
+					padding: 4px 24px;
+					background-color: rgba($black, .72);
+					color: $white;
+				}
+
+				&:hover {
+					opacity: 0;
+				}
+			}
+
+			.dj:nth-child(1) {
+				width: 20%;
+				height: 20%;
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(2) {
+				width: 20%;
+				height: 20%;
+				left: 3%;
+				top: 7.2%;
+
+				.img {
+					@include clip-path(polygon(0 62.1%, 100% 20.2%, 93.2% 79.7%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
+
+			.dj:nth-child(1) {
+
+				.img {
+					@include clip-path(polygon(24.3% 25.9%, 100% 32%, 0% 74%));
+				}
+
+				.name {
+
+				}
+			}
 		}
 	}
 
@@ -327,5 +554,12 @@
 		// .main-menu {
 		// 	top: 600px;
 		// }
+	}
+}
+
+@media only screen and (max-width: 600px) {
+
+	header .inner {
+		padding-top: 0;
 	}
 }

@@ -163,6 +163,16 @@
 	}
 }
 
+@media only screen and (max-width: 600px) {
+
+	.ticket--small {
+		@include span-columns($total-columns omega, $total-columns);
+		@include pre(0);
+		@include post(0);
+	}
+}
+
+
 // -------------------------------------
 //   States
 // -------------------------------------
