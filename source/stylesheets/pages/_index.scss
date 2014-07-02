@@ -27,6 +27,18 @@
 			position: relative;
 			z-index: 100;
 		}
+
+		.onelove {
+			display: none;
+		}
+
+		.inner {
+
+			&::before {
+				content: none;
+				display: none;
+			}
+		}
 	}
 
 	// .story.welcome {

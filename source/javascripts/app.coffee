@@ -6,7 +6,7 @@ console.log 'Hello and welcome to One Love DancingFest 👋'
 
 smallPhoneMinWidth = 341
 phoneMinWidth = 421
-tabletMinWidth = 801
+tabletMinWidth = 861
 desktopMinWidth = 1025
 largeDesktopMinWidth = 1441
 veryLargeDesktopMinWidth = 1700
@@ -20,11 +20,15 @@ mainMenuHeight = 90
 afterMainMenu = $('.main-menu + *')
 afterMainMenuOrgPaddingTop = afterMainMenu.css 'padding-top'
 toc = $('main .toc ul')
+tocli = $('main .toc li')
 tocHeight = 0
-tocOffsetTop = 0
+tocOffsetTop = 360
 main = $('main')
 mainHeight = 0
-mainOffsetTop = 0
+mainOffsetTop = 330
+indexTitle = $('.welcome .title')
+headerTitle = $('header .title')
+headerOneLove = $('header .onelove')
 
 # Helpers
 
@@ -103,10 +107,10 @@ refreshViev = () ->
   toc = $('main .toc ul')
   if toc.length
     mainHeight = main.height()
-    mainOffsetTop = main.offset().top
+    # mainOffsetTop = main.offset().top
     toc.css 'position', 'relative' if !isIOS and !Modernizr.csssticky
     tocHeight = toc.height()
-    tocOffsetTop = toc.offset().top
+    # tocOffsetTop = toc.offset().top
   # $('.wrapper').css 'background-color', $('.main-menu + *').css('background-color')
 
   $('.ticket--pull').each ->
@@ -155,7 +159,7 @@ onScroll = () ->
           'display': 'none'
     # toc
     if toc.length
-      if scrollTop > mainOffsetTop + mainHeight - mainMenuHeight - tocHeight
+      if scrollTop > mainOffsetTop + mainHeight - mainMenuHeight - tocHeight - 30
         toc.css
           'position': 'absolute'
           'top': 'auto'
@@ -170,6 +174,25 @@ onScroll = () ->
           'position': 'relative'
           'top': '0'
           'bottom': 'auto'
+    tocli.removeClass 'active'
+    tocli.each ->
+      if $($(this).children('a').attr('href')).offset()?.top < scrollTop + 200
+        tocli.removeClass 'active'
+        $(this).addClass 'active'
+
+    if indexTitle.length and !isIOS and $(window).width() >= tabletMinWidth
+      indexTitle.css
+        'margin-top': (scrollTop/2) + 'px'
+        'margin-bottom': -(scrollTop/2) + 'px'
+    if headerTitle.length and !isIOS and $(window).width() >= tabletMinWidth
+      headerTitle.css
+        'margin-top': (scrollTop/1.8) + 'px'
+        'margin-bottom': -(scrollTop/1.8) + 'px'
+    if headerOneLove.length and !isIOS and $(window).width() >= tabletMinWidth
+      headerOneLove.css
+        'margin-top': (scrollTop/4) + 'px'
+        'margin-bottom': -(scrollTop/4) + 'px'
+
   # Scroll Reveal
   if !isIOS
     scrollTop = $(this).scrollTop()

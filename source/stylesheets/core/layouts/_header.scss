@@ -5,28 +5,88 @@
 
 header {
 	@extend %skybg;
+	overflow: hidden;
 
 	.inner {
 		@include container($total-columns, $tablet, $desktop);
 		padding-top: 30px;
+		overflow: visible;
+
+		> * {
+			position: relative;
+		}
+
+		&::before {
+			content: " ";
+			display: block;
+			position: absolute;
+			background: image-url("header_bg.png");
+			width: 480px;
+			height: 240px;
+			background-size: cover;
+			top: 0;
+			right: -100px;
+		}
 
 		.title {
 			@include span-columns($total-columns - 2, $total-columns);
+			color: $dark-moderate-blue;
+			position: relative;
+			> * {
+				position: relative;
+			}
+
+			&::before {
+				content: " ";
+				display: block;
+				position: absolute;
+				background: image-url("b.png");
+				width: 535px;
+				height: 531px;
+				background-size: cover;
+				top: -371px;
+				left: -435px;
+			}
 		}
 
 		.action {
 			@include span-columns(2 omega, $total-columns);
+			text-align: right;
+		}
+
+		.onelove {
+			@include span-columns($total-columns, $total-columns);
+			color: $dark-moderate-blue;
+			text-transform: uppercase;
+			font-size: 30px;
+			display: none;
+
+			.zh {
+				font-family: "1LoveFest", $base-fontFamily;
+				font-size: 34px;
+			}
 		}
 
 		// ----- Tablet + ----- //
 		@include at-breakpoint($tablet) {
 
+			height: 240px;
+
 			.title {
 				@include span-columns($tablet-columns - 2, $tablet-columns);
+
+				h1 {
+					margin-top: 28px;
+				}
 			}
 
 			.action {
 				@include span-columns(2 omega, $tablet-columns);
+			}
+
+			.onelove {
+				display: block;
+				@include span-columns($tablet-columns, $tablet-columns);
 			}
 		}
 
@@ -41,11 +101,42 @@ header {
 				@include span-columns(2 omega, $desktop-columns);
 			}
 
+			.onelove {
+				@include span-columns($desktop-columns, $desktop-columns);
+			}
 		}
 
 		// ----- XXL Desktop + ----- //
 		@include respond-to($very-large-desktop-min-width) {
 
 		}
+	}
+}
+
+@media only screen and (max-width: 700px) {
+
+	header .inner .title h1 {
+		font-size: 40px;
+		line-height: 60px;
+	}
+}
+
+@media only screen and (max-width: 600px) {
+
+	header .inner .title h1 {
+		font-size: 30px;
+		line-height: 60px;
+	}
+
+	.button--action .en {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 400px) {
+
+	header .inner .title h1 {
+		font-size: 20px;
+		line-height: 60px;
 	}
 }

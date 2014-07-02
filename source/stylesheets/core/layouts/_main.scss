@@ -19,6 +19,7 @@ main {
 
 			ul {
 				padding-top: 15px;
+				padding-bottom: 15px;
 				margin: 0;
 			}
 
@@ -36,7 +37,7 @@ main {
 					width: 0;
 					height: 92%;
 					top: 4%;
-					background-color: rgba($white, .08);
+					background-color: rgba($white, .07);
 				}
 
 				&:hover::before {
@@ -52,10 +53,10 @@ main {
 				}
 
 				&.active {
-					height: 36px*1.4;
+					height: 50px;
 
 					a {
-						@include rhythm-to(0, 0.2, 0.2, 0, 36px);
+						@include rhythm-to(0, 0, 0, 0, 36px);
 					}
 				}
 			}
@@ -87,7 +88,7 @@ main {
 				top: 0;
 				left: 0;
 				height: 100%;
-				background-color: rgba($black, .52);
+				background-color: rgba($black, .72);
 			}
 		}
 
