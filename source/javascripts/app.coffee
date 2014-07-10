@@ -192,6 +192,9 @@ onScroll = () ->
       headerOneLove.css
         'margin-top': (scrollTop/4) + 'px'
         'margin-bottom': -(scrollTop/4) + 'px'
+    $storyInstallations = $('.story.installations')
+    if $storyInstallations.length and !isIOS and $(window).width() >= tabletMinWidth
+      $storyInstallations.css('background-position', '50% ' + ($(this).scrollTop() - $storyInstallations.offset().top + 10)/3 + 'px')
 
   # Scroll Reveal
   if !isIOS

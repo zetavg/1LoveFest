@@ -41,6 +41,11 @@
 		}
 	}
 
+	.button a, .button:hover a {
+		color: $white;
+		text-decoration: none;
+	}
+
 	// .story.welcome {
 	// 	height: 500px;
 	// }
@@ -273,12 +278,49 @@
 	.story.artists {
 		// background-color: $black;
 		padding: 0;
-		@include white_dot_background;
+		// @include white_dot_background;
+		// @include background-image(image-url("photos/CM1B3832.jpg"));
 
 		.inner {
 			padding-top: 40px;
 			padding-bottom: 40px;
-			background-color: rgba($white, .2);
+			// background-color: rgba($white, .2);
+
+			h1 {
+				color: $white;
+				text-align: center;
+			}
+
+			h2 {
+				color: $white;
+				line-height: inherit;
+
+				small {
+					color: rgba($white, .7);
+				}
+			}
+
+			.p {
+				line-height: 30px;
+				font-size: 16px;
+			}
+
+			> div {
+				@include span-columns($total-columns, $total-columns);
+
+				@include at-breakpoint($tablet) {
+
+					@include span-columns($tablet-columns / 4, $tablet-columns);
+				}
+
+				@include at-breakpoint($desktop) {
+
+					@include span-columns($desktop-columns / 3, $desktop-columns);
+					@include nth-omega(3n);
+				}
+
+				margin-bottom: 30px;
+			}
 		}
 
 		.djs {
@@ -503,8 +545,24 @@
 	// -------------------------------------
 
 	.story.installations {
-		background-color: $black;
+		background-color: #6c7091;
 		padding: 20px 0;
+		@include background-image(image-url("index/sp.jpg"));
+		@include background-size(cover);
+		background-position: 50% 50%;
+		padding: 0;
+
+		p {
+			color: $black;
+		}
+
+		.inner {
+			padding: 30px 0;
+
+			h1:first-child {
+				margin-top: 30px;
+			}
+		}
 	}
 
 	footer {
