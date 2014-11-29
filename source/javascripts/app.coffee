@@ -234,6 +234,14 @@ onScroll()
 ## Global
 
 $(document).ready ->
+  $(".welcome-slider").slick
+    autoplay: true
+    accessibility: false
+    arrows: false
+    dots: false
+    infinite: true
+    speed: 1000
+    fade: true
   # lazyload all images
   llThreshold = (if isIOS then 5000 else 0)
   $(".lazyload").show()

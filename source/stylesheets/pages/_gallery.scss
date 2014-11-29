@@ -1,0 +1,36 @@
+// *************************************
+//
+//   Gallery
+//
+// *************************************
+
+.gallery {
+
+	// ----- Tablet + ----- //
+	@include at-breakpoint($tablet) {
+
+		@include span-columns($tablet-columns omega, $tablet-columns);
+
+		.img {
+			@include span-columns(3, $tablet-columns);
+			@include nth-omega(3n);
+		}
+	}
+
+	// ----- Desktop + ----- //
+	@include at-breakpoint($desktop) {
+
+		@include span-columns($desktop-columns omega, $desktop-columns);
+
+		.img {
+			@include span-columns(4, $desktop-columns);
+			@include nth-omega(3n);
+		}
+
+	}
+
+	// ----- XXL Desktop + ----- //
+	@include respond-to($very-large-desktop-min-width) {
+
+	}
+}

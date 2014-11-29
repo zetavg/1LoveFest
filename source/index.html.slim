@@ -5,14 +5,13 @@ layout: base_layout
   header= partial 'partials/header'
   section.story.welcome
     ul#scene
-      li.layer(data-depth="0.10")
-        .bg(style="background-image: url(/images/index/scene/1.png)")
-
-      li.layer(data-depth="0.40")
-        .bg(style="background-image: url(/images/index/scene/2.png); background-position: 0% 100%;")
-
-      li.layer(data-depth="0.64")
-        .bg(style="background-image: url(/images/index/scene/3.png); background-position: 0% 100%;")
+      .welcome-slider
+        div(style="background-image: url(./images/photos/10553940_10202456724884688_8769758741074648715_o.jpg);")
+        div(style="background-image: url(./images/photos/10499440_10202456550960340_9106008947492005998_o.jpg);")
+        div(style="background-image: url(./images/photos/497A2576.jpg);")
+        div(style="background-image: url(./images/photos/497A3323.jpg);")
+        div(style="background-image: url(./images/photos/CM1B3832.jpg);")
+        div(style="background-image: url(./images/photos/CM1B3407.jpg);")
 
     .inner
       .title(data-parallax-rato="0.5" data-parallax-offset="10")
@@ -40,7 +39,7 @@ layout: base_layout
         var player;
         function onYouTubeIframeAPIReady() {
           player = new YT.Player('video', {
-            videoId: 'LmsRQs4IbxU',
+            videoId: 'XuTeZadcg04',
             playerVars: { 
               listType:'playlist',
               list: 'PL75SvviP4SAf00rQVnPiGmHyW7R1sUm_k',
@@ -72,23 +71,31 @@ layout: base_layout
   section.story.description(data-scroll-reveal-threshold="10" data-background-parallax-rato="-1")
     .inner
       h1(data-scroll-reveal="enter from the bottom over 1s")
-        | 7/19 號再次相約，以天際探險為名
+        | 灣樂音樂藝術節 One Love Dancingfest
       h2(data-scroll-reveal="wait 1s and then enter from the bottom over 1s")
-        | 巨型裝置藝術、科幻動態雙舞台、特殊造景物件、國際大師級表演藝人、十數組國內外知名演出單位、行動表演藝術、手繪塗鴉藝術、極限水上運動、好評美食市集
+        | 每年夏天北海岸最棒的私人海灘上的跳舞音樂祭 
       h2(data-scroll-reveal="wait 2s and then enter from the bottom over 1s")
-        | 今年夏天灣樂音樂藝術節再次在北海岸萬里白宮行館私人金色沙灘舉辦！
+        | 台灣，因為她的美妙風光被派對大國荷蘭與西班牙人稱為寶島或是福爾摩沙，在她的最南端沙灘，在每年的四月春假幾乎都會湧進超過十萬名以上的享樂趴客們到墾丁參加派對，而在北台灣的美麗沙灘上，是否有更好玩的派對和音樂節在夏天時發生呢？
       h2(data-scroll-reveal="wait 3s and then enter from the bottom over 1s")
-        | 延續去年夏日海灘風光，今年灣樂帶來更多藝術與音樂結合的精采紛呈活動，保證讓人目不暇給，完全融入灣樂一日限定的海灘幻想樂園。
+        | 愛與和平的美麗集聚
       h2(data-scroll-reveal="wait 4s and then enter from the bottom over 1s")
-        | 想像一片未來式建築美學的測地線遺跡藝術裝置滿佈沙灘，光影動態立體舞台與絢麗燈光星火充滿眼前。國際大師級 DJ / 國內外頂尖表演人員 / 樂手 輪番上陣享受聽覺饗宴；大型自由彩繪與特技雜耍表演層出不窮映入眼簾，參加知名水上活動海上鋼鐵人與最新潮流的沙灘泡泡足球賽。準備開始和我們進行一次超過 16 小時的天際探險，迎接北海岸最美麗的日出！
+        | 自2013年開始，一個名為One Love Dancingfest『灣樂音樂藝術節』的電子舞曲音樂節開始在基隆萬里的白宮行舘舉辦，第一年就有超過兩千五百名以上的戶外派對愛好者參加。而這個白宮行舘來頭不小，一片總長1.6公里的純淨私人海灘上矗立著純白色的雙層歐式建築。景致相當優美，在日出時的風景煞是迷人，日出時直接從海平面緩緩升起的一圈金色在煙波纏繞中被評鑑為北海岸佳景觀，沙灘的沙質鵝黃偏金，是北海岸的世外桃源。它的特殊每年夏天總吸引了許多國外觀光客與台灣遊客的駐足與拍照留念。
+      h2(data-scroll-reveal="wait 5s and then enter from the bottom over 1s")
+        | 而灣樂就是在這樣的一個絕佳的場地舉行，在 2013 年定調以 1960-70 年代的全球反戰思潮『Peace & Love』為精神標竿，加入藝術元素的節目設定，區別於一般派對強打國際藝人與百大 DJ 節目內容的屬性，另設置了許多和藝術結合的有趣區域在白宮行舘，增添了極佳的趣味性與豐富性。像是大受好評的集體塗鴉藝術區，不需要帶著畫筆畫布，灣樂都已經準備好在現場。和陌生人一同在空白畫布上即興作畫，結果變成好友的經驗，絕對是美妙非常的記憶。而且不用擔心害羞，因為現場的優質電子音樂催化後的歡樂氣氛，就是展現自我的絕佳時刻。
+      h2(data-scroll-reveal="wait 6s and then enter from the bottom over 1s")
+        | 音樂與藝術的完美結合
+      h2(data-scroll-reveal="wait 7s and then enter from the bottom over 1s")
+        | 灣樂以藝術與音樂為號召、所以活動中吸引了許多在表演藝術領域工作的相關人士參與活動、 長期在台北街頭與知名藝文表演的國內外藝人、在灣樂你都不難發現他們的身影，而更不用說在音樂節目方面，特別邀請的臺灣頂尖 DJ 群與國際藝人在精心設計的節目編排後，在海天一線的絕美氛圍烘托中，都讓人有耳目一新的全新感受。而灣樂強調視覺藝術的部分，這兩年都特別邀請長期在美國 Burning Man 火人節與十萬人等級的音樂祭 EDC 演出的動態視覺人員與在中國編排 F1 賽車發表會的表演人員負責製作舞台區的動態視覺展示。所以我們將可以看到精緻的立體投影舞台與 LED 光能特效舞台在夜晚時刻發揮它們強大的聚焦功能，將音樂以視覺強烈展現在沙灘上，成為當晚最重要的表演元素。
+      h2(data-scroll-reveal="wait 8s and then enter from the bottom over 1s")
+        | FB 灣樂音樂藝術節相關訊息：
+      h2(data-scroll-reveal="wait 9s and then enter from the bottom over 1s")
+        a(href="https://www.facebook.com/OneLoveDancingfest" target="_blank") https://www.facebook.com/OneLoveDancingfest
+
 
   section.story.installations
     .inner
       h1 巨型裝置藝術
       h3 天際探險：巨型測地線圓頂藝術裝置、風動藝術裝置 ／ 浮光掠影 3D 立體超顯影舞台 ／ Thunderball 烽火雷神 LED 光能放射舞台 ／ 灣樂特製 VIP 包廂 ／ 天文觀測站造景吧台
-
-      span.tal
-        .button= link_to '場地介紹 ››', '/space/'
 
   section.story.artists
     .inner
@@ -127,9 +134,6 @@ layout: base_layout
         .p 多彩系悠揚旋律小宇宙爆發
         .p 前衛電子混搭迷幻節奏完美呈現
 
-      span.tar
-        .button= link_to '查看 LINEUP ››', '/lineup/'
-        .button= link_to '立即購票 ››', '#foot-action'
   /     p 
 
   /       | 想像一片未來式建築美學的測地線遺跡藝術裝置滿佈沙灘，光影動態立體舞台與絢麗燈光星火充滿眼前。國際大師級DJ/國內外頂尖表演人員/樂手輪番上陣享受聽覺饗宴；大型自由彩繪與特技雜耍表演層出不窮映入眼簾，參加知名水上活動海上鋼鐵人與最新潮流的沙灘泡泡足球賽。準備開始和我們進行一次超過16小時的天際探險，迎接北海岸最美麗的日出！

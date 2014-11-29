@@ -6,6 +6,7 @@
 //= require jquery.lazyload/jquery.lazyload
 //= require parallax/deploy/parallax.js
 //= require scrollReveal.js/dist/scrollReveal.js
+//= require slick.js/slick/slick.js
 //= include app.js
 
 // foundation
